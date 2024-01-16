@@ -10,4 +10,5 @@ package daw;
  */
 public enum Comidas {
     
+    ENTRANTES,PRIMEROS,SEGUNDOS;
 }
