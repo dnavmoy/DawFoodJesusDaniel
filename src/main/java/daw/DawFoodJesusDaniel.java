@@ -4,6 +4,8 @@
 
 package daw;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author daniel
@@ -38,6 +40,7 @@ package daw;
 public class DawFoodJesusDaniel {
 
     public static void main(String[] args) {
-        System.out.println("idjsj");
+        
+     
     }
 }
