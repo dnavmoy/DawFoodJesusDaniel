@@ -21,8 +21,5 @@ public record Clientes() {
     public static int cvv;
     public static Date fechaVencimiento;
     public static double saldoTarjeta;        
-            
-    
-    
-            
+      
 }
