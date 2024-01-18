@@ -10,11 +10,11 @@ package daw;
  */
 public class Productos{
     
-    public final int ID;
+    //public final int ID;
     public String descripcion;
     public String nombre;
-    public Comida comida;
-    public Bebida bebida;
+    public Comidas comida;
+    public Bebidas bebida;
     public Postre postre;
     
     
