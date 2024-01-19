@@ -10,11 +10,14 @@ package daw;
  */
 public class Funciones {
     
+
     public static void pasarelaPago(Tarjeta tarjeta){
         
         int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
         
+
+
     }
     
     
