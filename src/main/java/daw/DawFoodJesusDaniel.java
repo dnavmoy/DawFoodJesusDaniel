@@ -37,6 +37,11 @@ public class DawFoodJesusDaniel {
         boolean salir = true;
         boolean atras = true;
 
+        //inicializar productos
+        
+        
+        
+        //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
 
@@ -115,9 +120,10 @@ public class DawFoodJesusDaniel {
                         }
                     }while (atras) ;
                  break;           
-                        
+                        //menu administrador
                       case 2:
                    break;
+                   
                case 3:
                    salir=false;
            }
