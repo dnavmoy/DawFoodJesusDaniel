@@ -18,7 +18,7 @@ public class Pruebas {
     
     ArrayList<Productos> tpv1 = new ArrayList<>();
     
-    tpv1.add(new Productos("cosa", "csoa", Comidas.ENTRANTES, null, null));
+    //tpv1.add(new Productos("cosa", "csoa", Comidas.ENTRANTES, null, null));
             
     
         System.out.println(tpv1);
