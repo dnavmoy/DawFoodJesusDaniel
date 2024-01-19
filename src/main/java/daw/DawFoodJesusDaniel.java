@@ -34,53 +34,107 @@ import javax.swing.JOptionPane;
 public class DawFoodJesusDaniel {
 
     public static void main(String[] args) {
-        boolean repetir = true;
-        boolean atras = true;
-        do {
-            int menu = Integer.parseInt(JOptionPane.showInputDialog("usuario1-"
-                    + " administrador 2. 3 para salir"));
 
-            switch (menu) {
-                case 1 :
+        boolean salir = true;
+        boolean atras = true;
+
+        //inicializar productos
+        //estructura menu
+        do {
+            int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
+
+            switch (respuesta) {
+
+                case 1:
                     do {
-                        int usuario = Integer.parseInt(JOptionPane.showInputDialog("1 comida-"
-                                + " 2bebida 3 postre 4 atras 5 salir"));
+                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre, 4 atras");
                         switch (usuario) {
                             case 1:
-                                JOptionPane.showMessageDialog(null, "comida");
-                                do{
-                                    int comida = Integer.parseInt(JOptionPane.showInputDialog("sub1-"
-                                + " sub2 sub3 4 atras "));
-                                    switch(comida){
-                                        case 1: 
-                                            JOptionPane.showMessageDialog(null, "sub1");
+
+                                do {
+                                    int comida = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
+                                    switch (comida) {
+                                        case 1:
+                                            System.out.println("sub 1");
+                                            break;
+                                        case 2:
+                                            System.out.println("sub 2");
+                                            break;
+                                        case 3:
+                                            System.out.println("sub 3");
                                             break;
                                         case 4:
-                                            atras=false;
+                                            atras = false;
+
                                     }
-                                }while(atras);
-                                atras=true;
+
+                                } while (atras);
+                                atras = true;
                                 break;
                             case 2:
-                                JOptionPane.showMessageDialog(null, "bebida");
+
+                                do {
+                                    int bebida = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
+                                    switch (bebida) {
+                                        case 1:
+                                            System.out.println("sub 1");
+                                            break;
+                                        case 2:
+                                            System.out.println("sub 2");
+                                            break;
+                                        case 3:
+                                            System.out.println("sub 3");
+                                            break;
+                                        case 4:
+                                            atras = false;
+
+                                    }
+
+                                } while (atras);
+                                atras = true;
                                 break;
                             case 3:
-                                JOptionPane.showMessageDialog(null, "postre");
+                                do {
+                                    int postre = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
+                                    switch (postre) {
+                                        case 1:
+                                            System.out.println("sub 1");
+                                            break;
+                                        case 2:
+                                            System.out.println("sub 2");
+                                            break;
+                                        case 3:
+                                            System.out.println("sub 3");
+                                            break;
+                                        case 4:
+                                            atras = false;
+
+                                    }
+
+                                } while (atras);
+                                atras = true;
                                 break;
                             case 4:
-                                atras=false;
+                                atras = false;
                         }
-
                     } while (atras);
                     break;
-                
+                //menu administrador
                 case 2:
-                    JOptionPane.showMessageDialog(null, "opcion 2");
+                    break;
+
                 case 3:
-                    repetir = false;
+                    salir = false;
             }
-            
-        } while (repetir);
+
+        } while (salir);
+
+    }
+
+    public static int respuestaJopt(String texto) {
+
+        int respuesta = Integer.parseInt(JOptionPane.showInputDialog(texto));
+        return respuesta;
 
     }
 }
