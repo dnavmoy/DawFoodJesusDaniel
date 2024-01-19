@@ -11,7 +11,7 @@ package daw;
 public class Funciones {
     
     public static void pasarelaPago(){
-        Clientes.
+        //Clientes.
     }
     
     
