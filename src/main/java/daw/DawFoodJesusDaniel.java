@@ -3,6 +3,7 @@
  */
 package daw;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -39,17 +40,19 @@ public class DawFoodJesusDaniel {
         boolean salir = true;
         boolean atras = true;
 
-        
         //inicializar productos
+        int[] arrayTarjeta = new int[4];
 
-       int[] arrayTarjeta =new int[3];
-       
-       arrayTarjeta[0]=1233;
-       arrayTarjeta[1]=1234;
-       arrayTarjeta[2]=1235;
-       arrayTarjeta[3]=1236;
-  
-        
+        arrayTarjeta[0] = 1233;
+        arrayTarjeta[1] = 1234;
+        arrayTarjeta[2] = 1235;
+        arrayTarjeta[3] = 1236;
+
+        Productos ensalada = new Productos(0, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
+        Productos gazpacho = new Productos(1, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
+        Productos agua = new Productos(2, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
+        Productos carne = new Productos(3, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
+
         //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
@@ -57,6 +60,7 @@ public class DawFoodJesusDaniel {
             switch (respuesta) {
 
                 case 1:
+                    ArrayList<Productos> carrito = new ArrayList<>();
                     do {
                         int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre, 4 atras");
                         switch (usuario) {
@@ -66,8 +70,30 @@ public class DawFoodJesusDaniel {
                                     int comida = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
                                     switch (comida) {
                                         case 1:
-                                            System.out.println("sub 1");
+                                            System.out.println("Entrantes");
+                                            do {
+                                                int entrantes = respuestaJopt("ensalada 1 - gazpacho 2 - atras 4");
+                                                switch (entrantes) {
+                                                    case 1:
+                                                        int cantidad = respuestaJopt("cuanto añades");
+                                                        Pruebas.addProducto(ensalada, carrito, cantidad);
+                                                        break;
+                                                    case 2:
+                                                        System.out.println("sub 2");
+                                                        break;
+                                                    case 3:
+                                                        System.out.println("sub 3");
+                                                        break;
+                                                    case 4:
+                                                        Pruebas.consultarProductos(carrito);
+                                                        atras = false;
+
+                                                }
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
+                                           
                                         case 2:
                                             System.out.println("sub 2");
                                             break;
