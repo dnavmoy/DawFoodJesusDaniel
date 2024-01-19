@@ -4,20 +4,16 @@
  */
 package daw;
 
+import java.util.Date;
+
 /**
  *
  * @author jesus
  */
-public class Funciones {
+public class Tarjeta {
     
-    public static void pasarelaPago(Clientes cliente){
-        
-        int tarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
-        
-        
-    }
-    
-    
-    
-    
+    private int numTarjeta;
+    private int cvv;
+    private Date fechaVencimiento;
+    private double Saldo;
 }

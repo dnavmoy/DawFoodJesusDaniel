@@ -3,6 +3,7 @@
  */
 package daw;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,13 +39,14 @@ public class DawFoodJesusDaniel {
         boolean salir = true;
         boolean atras = true;
 
+        
         //inicializar productos
-
-        Clientes c1 =new Clientes();
 
        
         
-  
+        
+        
+        
         //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
