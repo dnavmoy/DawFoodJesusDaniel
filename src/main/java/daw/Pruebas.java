@@ -25,10 +25,11 @@ public class Pruebas {
         String carritoTexto="";
         Iterator<Productos> it= carrito.iterator();
         while(it.hasNext()){
-           carritoTexto.concat("algo");
+            carritoTexto.concat(it.next().getDescripcion());
+            
        }
-        JOptionPane.showMessageDialog(null,carritoTexto);
-        
+       JOptionPane.showMessageDialog(null,carritoTexto);
+       
     }
     
             

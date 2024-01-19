@@ -52,7 +52,11 @@ public class DawFoodJesusDaniel {
         Productos gazpacho = new Productos(1, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
         Productos agua = new Productos(2, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
         Productos carne = new Productos(3, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
-
+        ArrayList<Productos> lista = new ArrayList();
+        lista.add(ensalada);
+        lista.add(gazpacho);
+        lista.add(agua);
+        lista.add(carne);
         //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
@@ -72,6 +76,7 @@ public class DawFoodJesusDaniel {
                                         case 1:
                                             System.out.println("Entrantes");
                                             do {
+                                                
                                                 int entrantes = respuestaJopt("ensalada 1 - gazpacho 2 - atras 4");
                                                 switch (entrantes) {
                                                     case 1:
