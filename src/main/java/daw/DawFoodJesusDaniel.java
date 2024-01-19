@@ -39,6 +39,11 @@ public class DawFoodJesusDaniel {
         boolean atras = true;
 
         //inicializar productos
+        Clientes c1 = new Clientes();
+        
+        
+        
+        
         //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
