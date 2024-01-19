@@ -10,9 +10,9 @@ package daw;
  */
 public class Funciones {
     
-    public static void pasarelaPago(Clientes cliente){
+    public static void pasarelaPago(Tarjeta tarjeta){
         
-        int tarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
+        int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
         
     }

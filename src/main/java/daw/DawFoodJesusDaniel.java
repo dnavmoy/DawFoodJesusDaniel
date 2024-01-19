@@ -42,10 +42,13 @@ public class DawFoodJesusDaniel {
         
         //inicializar productos
 
+       int[] arrayTarjeta =new int[3];
        
-        
-        
-        
+       arrayTarjeta[0]=1233;
+       arrayTarjeta[1]=1234;
+       arrayTarjeta[2]=1235;
+       arrayTarjeta[3]=1236;
+  
         
         //estructura menu
         do {

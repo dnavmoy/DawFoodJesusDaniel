@@ -29,8 +29,6 @@ public class Productos{
         this.Iva = Iva;
         this.stock = stock;
         this.comida = comida;
-        this.bebida = bebida;
-        this.postre = postre;
     }
     public Productos(int ID, String descripcion, double precio, double Iva, int stock,Bebidas bebida) {
         this.ID = ID;
@@ -38,9 +36,7 @@ public class Productos{
         this.precio = precio;
         this.Iva = Iva;
         this.stock = stock;
-        this.comida = comida;
-        this.bebida = bebida;
-        this.postre = postre;
+        this.bebida = bebida;     
     }
 
     
@@ -50,8 +46,6 @@ public class Productos{
         this.precio = precio;
         this.Iva = Iva;
         this.stock = stock;
-        this.comida = comida;
-        this.bebida = bebida;
         this.postre = postre;
     }
 
