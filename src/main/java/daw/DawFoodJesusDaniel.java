@@ -48,15 +48,19 @@ public class DawFoodJesusDaniel {
         arrayTarjeta[2] = 1235;
         arrayTarjeta[3] = 1236;
 
-        Productos ensalada = new Productos(0, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
-        Productos gazpacho = new Productos(1, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
-        Productos agua = new Productos(2, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
-        Productos carne = new Productos(3, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
+        Productos producto0 = new Productos(0, "cero", 0, 0, 0, Comidas.ENTRANTES);
+        Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
+        Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
+        Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
+        Productos carne = new Productos(4, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
+        Productos cerveza = new Productos(5, "Cerveza", 3.2, 0.21, 10, Bebidas.ALCOHOLICA);
         ArrayList<Productos> lista = new ArrayList();
+        lista.add(producto0);
         lista.add(ensalada);
         lista.add(gazpacho);
         lista.add(agua);
         lista.add(carne);
+        lista.add(cerveza);
         //estructura menu
         do {
             int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
@@ -66,46 +70,39 @@ public class DawFoodJesusDaniel {
                 case 1:
                     ArrayList<Productos> carrito = new ArrayList<>();
                     do {
-                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre, 4 atras");
+                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre, 0 atras");
                         switch (usuario) {
                             case 1:
 
                                 do {
-                                    int comida = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
+                                    int comida = respuestaJopt("1-Entrantes 2-Primeros 3-Segundos 0-atras");
                                     switch (comida) {
                                         case 1:
-                                            System.out.println("Entrantes");
+
                                             do {
                                                 
-                                                int entrantes = respuestaJopt("ensalada 1 - gazpacho 2 - atras 4");
-                                                switch (entrantes) {
-                                                    case 1:
-                                                        int cantidad = respuestaJopt("cuanto añades");
-                                                        Pruebas.addProducto(ensalada, carrito, cantidad);
-                                                        break;
-                                                    case 2:
-                                                        System.out.println("sub 2");
-                                                        break;
-                                                    case 3:
-                                                        System.out.println("sub 3");
-                                                        break;
-                                                    case 4:
-                                                        Pruebas.consultarProductos(carrito);
-                                                        atras = false;
-
-                                                }
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
-                                           
+
                                         case 2:
-                                            System.out.println("sub 2");
+                                           do {                                            
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                                                                   
+                                            } while (atras);
+                                            atras = true;
                                             break;
                                         case 3:
-                                            System.out.println("sub 3");
+                                            Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                            
+                                            
                                             break;
-                                        case 4:
+                                        case 0:
                                             atras = false;
 
                                     }
@@ -116,18 +113,33 @@ public class DawFoodJesusDaniel {
                             case 2:
 
                                 do {
-                                    int bebida = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
+                                    int bebida = respuestaJopt("1-Alcoholica  2-Con Gas 3-Sin Gas 0 atras");
                                     switch (bebida) {
                                         case 1:
-                                            System.out.println("sub 1");
+                                            do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
                                         case 2:
-                                            System.out.println("sub 2");
+                                             do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
                                         case 3:
-                                            System.out.println("sub 3");
+                                             do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
-                                        case 4:
+                                        case 0:
                                             atras = false;
 
                                     }
@@ -137,18 +149,33 @@ public class DawFoodJesusDaniel {
                                 break;
                             case 3:
                                 do {
-                                    int postre = respuestaJopt("1 sub 1 2 sub 2 3 sub 3 4 atras");
-                                    switch (postre) {
+                                    int postre = respuestaJopt("1-Caliente 2-Frio 3-Fruta 0-atras");
+                                     switch (postre) {
                                         case 1:
-                                            System.out.println("sub 1");
+                                            do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
                                         case 2:
-                                            System.out.println("sub 2");
+                                             do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.FRIO);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
                                         case 3:
-                                            System.out.println("sub 3");
+                                             do {
+                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
+                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                            } while (atras);
+                                            atras = true;
                                             break;
-                                        case 4:
+                                        case 0:
                                             atras = false;
 
                                     }
@@ -156,7 +183,7 @@ public class DawFoodJesusDaniel {
                                 } while (atras);
                                 atras = true;
                                 break;
-                            case 4:
+                            case 0:
                                 atras = false;
                         }
                     } while (atras);
