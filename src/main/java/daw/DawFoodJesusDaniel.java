@@ -48,14 +48,15 @@ public class DawFoodJesusDaniel {
         arrayTarjeta[2] = 1235;
         arrayTarjeta[3] = 1236;
 
-        Productos producto0 = new Productos(0, "ATRAS*", 0, 0, 0, Comidas.ENTRANTES);
+       
         Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
         Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
         Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
         Productos carne = new Productos(4, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
         Productos cerveza = new Productos(5, "Cerveza", 3.2, 0.21, 10, Bebidas.ALCOHOLICA);
+        Productos manzana = new Productos(6, "Manzana", 0.75, 0.21, 7, Postre.FRUTA);
         ArrayList<Productos> lista = new ArrayList();
-        lista.add(producto0);
+       
         lista.add(ensalada);
         lista.add(gazpacho);
         lista.add(agua);
@@ -215,7 +216,7 @@ public class DawFoodJesusDaniel {
                                 
                                 break;
                             case 2:
-                                lista.add(new Productos(6, "ejemplo añadir", respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
+                                lista.add(new Productos(lista.size()+1, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
                                 break;
                             case 3:
                                 break;
@@ -257,6 +258,10 @@ public class DawFoodJesusDaniel {
 
     
         return seleccion;
+    }
+    public static String respuestaTexto(String menu){
+        String respuesta=JOptionPane.showInputDialog(menu);
+        return respuesta;
     }
     
    
