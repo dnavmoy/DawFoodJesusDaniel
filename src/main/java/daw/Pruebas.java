@@ -17,19 +17,31 @@ import javax.swing.JOptionPane;
 public class Pruebas {
 
     public static void addProducto(ArrayList<Productos> lista, ArrayList<Productos> carrito, int cantidad, int id) {
-        for (int i = 0; i < cantidad; i++) {
-            carrito.add(lista.get(id));
+        
+            if (cantidad > lista.get(id).getStock()) {
+                JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + lista.get(id).getStock());
+            } else {
+                lista.get(id).setStock(lista.get(id).getStock()-cantidad);
+                for (int i = 0; i < cantidad; i++) {
+                carrito.add(lista.get(id));
+                
+
+            }
         }
     }
 
     public static void consultarProductos(ArrayList<Productos> carrito) {
-        String carritoTexto = "";
+        String carritoTexto = "Id --- descripcion--- precio--- precio c/iva \n";
+        double total = 0;
+        double totalIva = 0;
         Iterator<Productos> it = carrito.iterator();
         while (it.hasNext()) {
             Productos nuevo = it.next();
-            carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "\n");
-
+            carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "--" + (1 + nuevo.getIva()) * nuevo.getPrecio() + "\n");
+            total += nuevo.getPrecio();
+            totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
         }
+        carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
         JOptionPane.showMessageDialog(null, carritoTexto);
 
     }
@@ -43,10 +55,10 @@ public class Pruebas {
             if (nuevo.getComida() != null) {
                 try {
                     if (nuevo.getComida().compareTo(producto.getComida()) == 0) {
-                        listaTexto = listaTexto.concat(nuevo.getID() + " " + nuevo.getDescripcion() + "-");
+                        listaTexto = listaTexto.concat(nuevo.getID() + "-" + nuevo.getDescripcion() + "-"+nuevo.getPrecio()*(1+nuevo.getIva())+ "\n");
                     }
                 } catch (NullPointerException npe) {
-                    System.out.println("salta error");
+
                 }
             }
             if (nuevo.getBebida() != null) {
@@ -55,7 +67,7 @@ public class Pruebas {
                         listaTexto = listaTexto.concat(nuevo.getID() + " " + nuevo.getDescripcion() + "-");
                     }
                 } catch (NullPointerException npe) {
-                    System.out.println("salta error");
+
                 }
             }
             if (nuevo.getPostre() != null) {
@@ -64,7 +76,7 @@ public class Pruebas {
                         listaTexto = listaTexto.concat(nuevo.getID() + " " + nuevo.getDescripcion() + "-");
                     }
                 } catch (NullPointerException npe) {
-                    System.out.println("salta error");
+
                 }
 
             }
@@ -73,16 +85,16 @@ public class Pruebas {
         return listaTexto;
     }
 
-    public static boolean pedir(ArrayList<Productos> lista,ArrayList<Productos> carrito, Productos tipo) {
-        boolean atras=true;
+    public static boolean pedir(ArrayList<Productos> lista, ArrayList<Productos> carrito, Productos tipo) {
+        boolean atras = true;
         int pedido = respuestaJopt(Pruebas.crearLista(lista, tipo) + "0-atras");
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
             Pruebas.addProducto(lista, carrito, cantidad, pedido);
         } else {
             Pruebas.consultarProductos(carrito);
-            atras=false;
-            
+            atras = false;
+
         }
         return atras;
     }

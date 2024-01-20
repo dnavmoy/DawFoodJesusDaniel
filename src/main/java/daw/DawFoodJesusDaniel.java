@@ -63,14 +63,14 @@ public class DawFoodJesusDaniel {
         lista.add(cerveza);
         //estructura menu
         do {
-            int respuesta = respuestaJopt("1 usuario, 2 adminstrador,3 salir");
+            int respuesta = respuestaJopt("1 usuario, 2 adminstrador,0 salir");
 
             switch (respuesta) {
 
                 case 1:
                     ArrayList<Productos> carrito = new ArrayList<>();
                     do {
-                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre, 0 atras");
+                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre,4 ver carrito,5 Pagar 0 atras");
                         switch (usuario) {
                             case 1:
 
@@ -80,28 +80,28 @@ public class DawFoodJesusDaniel {
                                         case 1:
 
                                             do {
-                                                
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
 
                                         case 2:
-                                           do {                                            
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
-                                                                                   
+                                            do {
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
+
                                             } while (atras);
                                             atras = true;
                                             break;
                                         case 3:
-                                            Productos objeto= new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
-                                            
-                                            
+                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
+                                            atras = Pruebas.pedir(lista, carrito, objeto);
+
                                             break;
+
                                         case 0:
                                             atras = false;
 
@@ -117,24 +117,24 @@ public class DawFoodJesusDaniel {
                                     switch (bebida) {
                                         case 1:
                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
                                         case 2:
-                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                            do {
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
                                         case 3:
-                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                            do {
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
@@ -150,27 +150,27 @@ public class DawFoodJesusDaniel {
                             case 3:
                                 do {
                                     int postre = respuestaJopt("1-Caliente 2-Frio 3-Fruta 0-atras");
-                                     switch (postre) {
+                                    switch (postre) {
                                         case 1:
                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
                                         case 2:
-                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.FRIO);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                            do {
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRIO);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
                                             break;
                                         case 3:
-                                             do {
-                                                Productos objeto= new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
-                                                atras=Pruebas.pedir(lista, carrito, objeto);
+                                            do {
+                                                Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
+                                                atras = Pruebas.pedir(lista, carrito, objeto);
 
                                             } while (atras);
                                             atras = true;
@@ -183,6 +183,12 @@ public class DawFoodJesusDaniel {
                                 } while (atras);
                                 atras = true;
                                 break;
+                            case 4:
+                                Pruebas.consultarProductos(carrito);
+                                break;
+                            case 5:
+                                //Funciones.pasarelaPago(tarjeta);
+                                break;
                             case 0:
                                 atras = false;
                         }
@@ -190,9 +196,29 @@ public class DawFoodJesusDaniel {
                     break;
                 //menu administrador
                 case 2:
+                    
+                    do {
+                        int administrador = respuestaJopt("1-cambiar producto 2-Alta 3-borrar 4- consultar 0 atras ");
+                                
+                        switch (administrador) {
+                            case 1:
+                                
+                                break;
+                            case 2:
+                                lista.add(new Productos(6, "ejemplo añadir", respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 0:
+                                atras = false;
+                                break;
+                        }
+                    } while (atras);
                     break;
 
-                case 3:
+                case 0:
                     salir = false;
             }
 
