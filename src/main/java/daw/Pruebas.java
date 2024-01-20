@@ -85,9 +85,60 @@ public class Pruebas {
         return listaTexto;
     }
 
+    public static String[] crearListaArray(ArrayList<Productos> lista, Productos producto) {
+        
+        ArrayList<String> devuelto = new ArrayList();
+        
+        
+        //ArrayList<Productos> devuelto = new ArrayList();
+        Iterator<Productos> it = lista.iterator();
+        while (it.hasNext()) {
+            Productos nuevo = it.next();
+            if (nuevo.getComida() != null) {
+                try {
+                    if (nuevo.getComida().compareTo(producto.getComida()) == 0) {
+                        devuelto.add(nuevo.getID() + "-" + nuevo.getDescripcion() + "-"+nuevo.getPrecio()*(1+nuevo.getIva()));
+                    }
+                } catch (NullPointerException npe) {
+
+                }
+            }
+            if (nuevo.getBebida() != null) {
+                try {
+                    if (nuevo.getBebida().compareTo(producto.getBebida()) == 0) {
+                        devuelto.add(nuevo.getID() + "-" + nuevo.getDescripcion() + "-"+nuevo.getPrecio()*(1+nuevo.getIva()));
+                    }
+                } catch (NullPointerException npe) {
+
+                }
+            }
+            if (nuevo.getPostre() != null) {
+                try {
+                    if (nuevo.getPostre().compareTo(producto.getPostre()) == 0) {
+                        devuelto.add(nuevo.getID() + "-" + nuevo.getDescripcion() + "-"+nuevo.getPrecio()*(1+nuevo.getIva()));
+                    }
+                } catch (NullPointerException npe) {
+
+                }
+
+            }
+
+        }
+        String[] devolver = new String[devuelto.size()+1];
+        devolver[0]="ATRAS";
+        for(int i=1; i<devuelto.size()+1;i++){
+            devolver[i]=devuelto.get(i-1);
+        }
+        
+        return devolver;
+    }
+    
     public static boolean pedir(ArrayList<Productos> lista, ArrayList<Productos> carrito, Productos tipo) {
         boolean atras = true;
-        int pedido = respuestaJopt(Pruebas.crearLista(lista, tipo) + "0-atras");
+        
+        int pedido=DawFoodJesusDaniel.respuestaBoton(Pruebas.crearListaArray(lista, tipo));
+        //int pedido = respuestaJopt(Pruebas.crearLista(lista, tipo) + "0-atras");
+        
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
             Pruebas.addProducto(lista, carrito, cantidad, pedido);

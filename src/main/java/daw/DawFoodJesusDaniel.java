@@ -48,7 +48,7 @@ public class DawFoodJesusDaniel {
         arrayTarjeta[2] = 1235;
         arrayTarjeta[3] = 1236;
 
-        Productos producto0 = new Productos(0, "cero", 0, 0, 0, Comidas.ENTRANTES);
+        Productos producto0 = new Productos(0, "ATRAS*", 0, 0, 0, Comidas.ENTRANTES);
         Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
         Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
         Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
@@ -63,19 +63,23 @@ public class DawFoodJesusDaniel {
         lista.add(cerveza);
         //estructura menu
         do {
-            int respuesta = respuestaJopt("1 usuario, 2 adminstrador,0 salir");
+            String[] menu={"SALIR","USUARIO","ADMINISTRADOR"};
+            int respuesta=respuestaBoton(menu);
+            //int respuesta = respuestaJopt("1 usuario, 2 adminstrador,0 salir");
 
             switch (respuesta) {
 
                 case 1:
                     ArrayList<Productos> carrito = new ArrayList<>();
                     do {
-                        int usuario = respuestaJopt("1 comida, 2 bebida, 3 postre,4 ver carrito,5 Pagar 0 atras");
+                        String[] menuUsuario={"ATRAS","COMIDA","BEBIDA","POSTRE","VER CARRITO","PAGAR"};
+                        int usuario = respuestaBoton(menuUsuario);
                         switch (usuario) {
                             case 1:
 
                                 do {
-                                    int comida = respuestaJopt("1-Entrantes 2-Primeros 3-Segundos 0-atras");
+                                    String[] menuComida={"ATRAS","ENTRANTES","PRIMEROS","SEGUNDOS"};
+                                    int comida = respuestaBoton(menuComida);
                                     switch (comida) {
                                         case 1:
 
@@ -113,7 +117,9 @@ public class DawFoodJesusDaniel {
                             case 2:
 
                                 do {
-                                    int bebida = respuestaJopt("1-Alcoholica  2-Con Gas 3-Sin Gas 0 atras");
+                                    String[] bebidaarray= {"ATRAS","ALCOHOLICA","Con Gas","Sin Gas"};
+                                    int bebida=respuestaBoton(bebidaarray);
+                                   
                                     switch (bebida) {
                                         case 1:
                                             do {
@@ -149,7 +155,9 @@ public class DawFoodJesusDaniel {
                                 break;
                             case 3:
                                 do {
-                                    int postre = respuestaJopt("1-Caliente 2-Frio 3-Fruta 0-atras");
+                                    String[] menuPostre= {"ATRAS","CALIENTE","FRIO","FRUTA"};
+                                    int postre=respuestaBoton(menuPostre);
+                                    
                                     switch (postre) {
                                         case 1:
                                             do {
@@ -198,7 +206,9 @@ public class DawFoodJesusDaniel {
                 case 2:
                     
                     do {
-                        int administrador = respuestaJopt("1-cambiar producto 2-Alta 3-borrar 4- consultar 0 atras ");
+                        String[] menuAdministrador= {"ATRAS","CAMBIAR PRODUCTO","ALTA PRODUCTO","BORRAR PRODUCTO","CONSULTA PRODUCTO"};
+                        int administrador=respuestaBoton(menuAdministrador);
+                        
                                 
                         switch (administrador) {
                             case 1:
@@ -217,7 +227,7 @@ public class DawFoodJesusDaniel {
                         }
                     } while (atras);
                     break;
-
+                //Opcion para salir
                 case 0:
                     salir = false;
             }
@@ -232,4 +242,24 @@ public class DawFoodJesusDaniel {
         return respuesta;
 
     }
+    
+    public static int respuestaBoton(String[] menu){
+        
+        int seleccion = JOptionPane.showOptionDialog(
+   null,
+   "Seleccione opcion", 
+   "Selector de opciones",
+   JOptionPane.YES_NO_CANCEL_OPTION,
+   JOptionPane.QUESTION_MESSAGE,
+   null,
+   menu,   
+   "usuario");
+
+    
+        return seleccion;
+    }
+    
+   
+
+    
 }
