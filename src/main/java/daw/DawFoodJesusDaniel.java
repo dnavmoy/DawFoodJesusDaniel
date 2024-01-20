@@ -62,6 +62,7 @@ public class DawFoodJesusDaniel {
         lista.add(agua);
         lista.add(carne);
         lista.add(cerveza);
+        lista.add(manzana);
         //estructura menu
         do {
             String[] menu={"SALIR","USUARIO","ADMINISTRADOR"};

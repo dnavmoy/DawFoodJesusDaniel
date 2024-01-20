@@ -18,7 +18,7 @@ public class Pruebas {
 
     public static void addProducto(ArrayList<Productos> lista, ArrayList<Productos> carrito, int cantidad, Productos producto) {
 
-        if (cantidad > producto.getStock() ) {
+        if (cantidad > producto.getStock()) {
             JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
         } else {
             producto.setStock(producto.getStock() - cantidad);
@@ -45,49 +45,8 @@ public class Pruebas {
 
     }
 
-//    public static String crearLista(ArrayList<Productos> lista, Productos producto) {
-//        String listaTexto = "";
-//        ArrayList<Productos> devuelto = new ArrayList();
-//        Iterator<Productos> it = lista.iterator();
-//        while (it.hasNext()) {
-//            Productos nuevo = it.next();
-//            if (nuevo.getComida() != null) {
-//                try {
-//                    if (nuevo.getComida().compareTo(producto.getComida()) == 0) {
-//                        listaTexto = listaTexto.concat(nuevo.getID() + "-" + nuevo.getDescripcion() + "-" + nuevo.getPrecio() * (1 + nuevo.getIva()) + "\n");
-//                    }
-//                } catch (NullPointerException npe) {
-//
-//                }
-//            }
-//            if (nuevo.getBebida() != null) {
-//                try {
-//                    if (nuevo.getBebida().compareTo(producto.getBebida()) == 0) {
-//                        listaTexto = listaTexto.concat(nuevo.getID() + " " + nuevo.getDescripcion() + "-");
-//                    }
-//                } catch (NullPointerException npe) {
-//
-//                }
-//            }
-//            if (nuevo.getPostre() != null) {
-//                try {
-//                    if (nuevo.getPostre().compareTo(producto.getPostre()) == 0) {
-//                        listaTexto = listaTexto.concat(nuevo.getID() + " " + nuevo.getDescripcion() + "-");
-//                    }
-//                } catch (NullPointerException npe) {
-//
-//                }
-//
-//            }
-//
-//        }
-//        return listaTexto;
-//    }
-
-
     public static ArrayList<Productos> crearListaArray(ArrayList<Productos> lista, Productos producto) {
 
-        //ArrayList<String> devuelto = new ArrayList();
         ArrayList<Productos> devuelto = new ArrayList();
         Iterator<Productos> it = lista.iterator();
         while (it.hasNext()) {
@@ -142,10 +101,9 @@ public class Pruebas {
 
         int pedido = DawFoodJesusDaniel.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)));
 
-        
         if (pedido != 0) {
-            int cantidad = respuestaJopt("cuanto añades");         
-            Pruebas.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido-1));
+            int cantidad = respuestaJopt("cuanto añades");
+            Pruebas.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
         } else {
             Pruebas.consultarProductos(carrito);
             atras = false;
