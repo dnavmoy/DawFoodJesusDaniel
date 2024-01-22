@@ -3,7 +3,9 @@
  */
 package daw;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,9 +32,9 @@ import javax.swing.JOptionPane;
 //
 //arraylist pedidos
 //arraylist- lista pedidos
-//clase carrito!**************
-//clase tpv*************
-//clase ticket*********
+//clase carrito!
+//clase tpv
+//clase ticket
 //
 //tpv- constraseñasadministrador 
 public class DawFoodJesusDaniel {
@@ -70,6 +72,7 @@ public class DawFoodJesusDaniel {
             int respTpv = respuestaBoton(menuTpv);
             switch (respTpv) {
                 case 1:
+                    ListaVentas tpv1 = new ListaVentas();
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
@@ -78,7 +81,8 @@ public class DawFoodJesusDaniel {
                         switch (respuesta) {
 
                             case 1:
-                                ArrayList<Productos> carrito = new ArrayList<>();
+                                Carrito carrito= new Carrito();
+                                //ArrayList<Productos> carrito = new ArrayList<>();
                                 do {
                                     String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
                                     int usuario = respuestaBoton(menuUsuario);
@@ -203,7 +207,10 @@ public class DawFoodJesusDaniel {
                                             Pruebas.consultarProductos(carrito);
                                             break;
                                         case 5:
-                                            //Funciones.pasarelaPago(tarjeta);
+                                            boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
+                                            if (pagado){
+                                            tpv1.getVentas().add(carrito);
+                                            }
                                             break;
                                         case 0:
                                             atras = false;
@@ -214,7 +221,7 @@ public class DawFoodJesusDaniel {
                             case 2:
 
                                 do {
-                                    String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO"};
+                                    String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO","VER VENTAS"};
                                     int administrador = respuestaBoton(menuAdministrador);
 
                                     switch (administrador) {
@@ -227,6 +234,9 @@ public class DawFoodJesusDaniel {
                                         case 3:
                                             break;
                                         case 4:
+                                            break;
+                                        case 5:
+                                            System.out.println(tpv1);
                                             break;
                                         case 0:
                                             atras = false;

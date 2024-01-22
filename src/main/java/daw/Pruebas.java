@@ -6,7 +6,6 @@ package daw;
 
 import static daw.DawFoodJesusDaniel.respuestaJopt;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -16,24 +15,25 @@ import javax.swing.JOptionPane;
  */
 public class Pruebas {
 
-    public static void addProducto(ArrayList<Productos> lista, ArrayList<Productos> carrito, int cantidad, Productos producto) {
+    public static void addProducto(ArrayList<Productos> lista, Carrito carrito, int cantidad, Productos producto) {
 
         if (cantidad > producto.getStock()) {
             JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
         } else {
             producto.setStock(producto.getStock() - cantidad);
             for (int i = 0; i < cantidad; i++) {
-                carrito.add(producto);
+                carrito.getCesta().add(producto);
+                //carrito.add(producto);
 
             }
         }
     }
 
-    public static void consultarProductos(ArrayList<Productos> carrito) {
+    public static void consultarProductos(Carrito carrito) {
         String carritoTexto = "Id --- descripcion--- precio--- precio c/iva \n";
         double total = 0;
         double totalIva = 0;
-        Iterator<Productos> it = carrito.iterator();
+        Iterator<Productos> it = carrito.getCesta().iterator();
         while (it.hasNext()) {
             Productos nuevo = it.next();
             carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "--" + (1 + nuevo.getIva()) * nuevo.getPrecio() + "\n");
@@ -96,7 +96,7 @@ public class Pruebas {
         return devolver;
     }
 
-    public static boolean pedir(ArrayList<Productos> lista, ArrayList<Productos> carrito, Productos tipo) {
+    public static boolean pedir(ArrayList<Productos> lista, Carrito carrito, Productos tipo) {
         boolean atras = true;
 
         int pedido = DawFoodJesusDaniel.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)));

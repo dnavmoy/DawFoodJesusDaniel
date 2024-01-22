@@ -6,21 +6,15 @@ package daw;
 
 /**
  *
- * @author jesus
+ * @author daniel
  */
-public class Funciones {
+public class Usuario {
     
-
-    public static boolean pasarelaPago(Tarjeta tarjeta){
-        boolean correcto=true;
-        //int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
+    public static boolean Usuario(){
+        boolean atras=true;
         
         
-
-        return correcto;
+        return atras;
     }
-    
-    
-    
     
 }
