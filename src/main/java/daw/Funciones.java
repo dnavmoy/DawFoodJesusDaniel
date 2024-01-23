@@ -11,13 +11,13 @@ package daw;
 public class Funciones {
     
 
-    public static void pasarelaPago(Tarjeta tarjeta){
-        
-        int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
+    public static boolean pasarelaPago(Tarjeta tarjeta){
+        boolean correcto=true;
+        //int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
         
 
-
+        return correcto;
     }
     
     
