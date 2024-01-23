@@ -15,7 +15,9 @@ public class Funciones {
     
 
     public static boolean pasarelaPago(Carrito carrito){
+
         boolean correcto=false;
+
         int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
       

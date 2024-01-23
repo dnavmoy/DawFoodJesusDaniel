@@ -144,11 +144,13 @@ public class Usuario {
                                             break;
                                         case 4:
                                             Pruebas.consultarProductos(carrito);
+                                            
                                             break;
                                         case 5:
                                             boolean pagado=Funciones.pasarelaPago(carrito);
+
                                             if (pagado){
-                                            tpv1.getVentas().add(carrito);
+                        tpv1.getVentas().add(carrito);
                                                 System.out.println("ha funcionado");
                                             }
                                             break;
