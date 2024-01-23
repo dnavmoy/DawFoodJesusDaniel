@@ -14,26 +14,28 @@ import java.util.Date;
 public class Funciones {
     
 
-    public static boolean pasarelaPago(Tarjeta tarjeta){
-        boolean correcto=true;
+    public static boolean pasarelaPago(Carrito carrito){
+        boolean correcto=false;
         int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
+      
         for(int i=0;i<tarjetas().size();i++){
             
-            if(numTarjeta==tarjeta.getNumTarjeta()){
-                //tarjeta.setSaldo(tarjeta.getSaldo()-Pruebas.pedi());
+            if(numTarjeta==tarjetas().get(i).getNumTarjeta()
+                    && tarjetas().get(i).getSaldo()>= Pruebas.consultarProductos(carrito))
+            {
+                tarjetas().get(i).setSaldo(tarjetas().get(i).getSaldo()-Pruebas.consultarProductos(carrito));
+                
+                correcto=true;
             }
             
         }
-            
-        
-        
 
         return correcto;
     }
     
     
-    public static ArrayList tarjetas () {
+    public static ArrayList<Tarjeta> tarjetas () {
     
     Tarjeta t1=new Tarjeta(1234,123, new Date(2025,12,30),1000);
     Tarjeta t2=new Tarjeta(4321,321, new Date(2024,12,30),200);
