@@ -10,7 +10,7 @@ package daw;
  */
 public class InicializadorClases {
     
- public static void incializadorProductos(){
+ public static ArrayProductos incializadorProductos(){
      ArrayProductos lista=new ArrayProductos();
         
         Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
@@ -27,6 +27,8 @@ public class InicializadorClases {
         lista.getListaProductos().add(carne);
         lista.getListaProductos().add(cerveza);
         lista.getListaProductos().add(manzana);
+        
+        return lista;
      
  }   
     
