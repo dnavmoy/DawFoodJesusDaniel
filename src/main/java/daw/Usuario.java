@@ -146,10 +146,11 @@ public class Usuario {
                                             Pruebas.consultarProductos(carrito);
                                             break;
                                         case 5:
-                                            //boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
-                                            //if (pagado){
+                                            boolean pagado=Funciones.pasarelaPago(carrito);
+                                            if (pagado){
                                             tpv1.getVentas().add(carrito);
-                                            //}
+                                                System.out.println("ha funcionado");
+                                            }
                                             break;
                                         case 0:
                                             atras = false;
