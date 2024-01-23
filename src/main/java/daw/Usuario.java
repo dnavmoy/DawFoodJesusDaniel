@@ -6,6 +6,7 @@ package daw;
 
 import static daw.DawFoodJesusDaniel.respuestaBoton;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 public class Usuario {
     
-    public static boolean Usuario(){
+    public static boolean Usuario(ArrayList<Productos> lista,ListaVentas tpv1){
         boolean atras=true;
         
         
@@ -145,10 +146,10 @@ public class Usuario {
                                             Pruebas.consultarProductos(carrito);
                                             break;
                                         case 5:
-                                            boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
-                                            if (pagado){
+                                            //boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
+                                            //if (pagado){
                                             tpv1.getVentas().add(carrito);
-                                            }
+                                            //}
                                             break;
                                         case 0:
                                             atras = false;
