@@ -44,6 +44,17 @@ public class Pruebas {
         JOptionPane.showMessageDialog(null, carritoTexto);
         return totalIva;
     }
+    
+    public static double sacarTotal(Carrito carrito){
+        double total = 0;
+        double totalIva = 0;
+        Iterator<Productos> it = carrito.getCesta().iterator();
+        while (it.hasNext()) {
+            Productos nuevo = it.next();
+            totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
+        }
+        return totalIva;
+    }
 
     public static ArrayList<Productos> crearListaArray(ArrayList<Productos> lista, Productos producto) {
 
