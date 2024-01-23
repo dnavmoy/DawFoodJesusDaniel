@@ -24,9 +24,9 @@ public class Funciones {
         for(int i=0;i<tarjetas().size();i++){
             
             if(numTarjeta==tarjetas().get(i).getNumTarjeta()
-                    && tarjetas().get(i).getSaldo()>= Pruebas.consultarProductos(carrito))
+                    && tarjetas().get(i).getSaldo()>= Pruebas.sacarTotal(carrito))
             {
-                tarjetas().get(i).setSaldo(tarjetas().get(i).getSaldo()-Pruebas.consultarProductos(carrito));
+                tarjetas().get(i).setSaldo(tarjetas().get(i).getSaldo()-Pruebas.sacarTotal(carrito));
                 
                 correcto=true;
             }
