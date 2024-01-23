@@ -45,27 +45,25 @@ public class DawFoodJesusDaniel {
         boolean atras = true;
 
         //inicializar productos
-        int[] arrayTarjeta = new int[4];
-
-        arrayTarjeta[0] = 1233;
-        arrayTarjeta[1] = 1234;
-        arrayTarjeta[2] = 1235;
-        arrayTarjeta[3] = 1236;
-
+        
+        //InicializadorClases.incializadorProductos();
+        
+        ArrayProductos lista=new ArrayProductos();
+        
         Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
         Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
         Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
         Productos carne = new Productos(4, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
         Productos cerveza = new Productos(5, "Cerveza", 3.2, 0.21, 10, Bebidas.ALCOHOLICA);
         Productos manzana = new Productos(6, "Manzana", 0.75, 0.21, 7, Postre.FRUTA);
-        ArrayList<Productos> lista = new ArrayList();
+        //ArrayList<Productos> lista = new ArrayList();
 
-        lista.add(ensalada);
-        lista.add(gazpacho);
-        lista.add(agua);
-        lista.add(carne);
-        lista.add(cerveza);
-        lista.add(manzana);
+        lista.getListaProductos().add(ensalada);
+        lista.getListaProductos().add(gazpacho);
+        lista.getListaProductos().add(agua);
+        lista.getListaProductos().add(carne);
+        lista.getListaProductos().add(cerveza);
+        lista.getListaProductos().add(manzana);
         //estructura menu
         do {
             String[] menuTpv = {"SALIR", "TPV"};
@@ -82,168 +80,11 @@ public class DawFoodJesusDaniel {
 
                             case 1:
                                 Usuario.Usuario(lista,tpv1);
-//                                Carrito carrito= new Carrito();
-//                                //ArrayList<Productos> carrito = new ArrayList<>();
-//                                do {
-//                                    String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
-//                                    int usuario = respuestaBoton(menuUsuario);
-//                                    switch (usuario) {
-//                                        case 1:
-//
-//                                            do {
-//                                                String[] menuComida = {"ATRAS", "ENTRANTES", "PRIMEROS", "SEGUNDOS"};
-//                                                int comida = respuestaBoton(menuComida);
-//                                                switch (comida) {
-//                                                    case 1:
-//
-//                                                        do {
-//
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//
-//                                                    case 2:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 3:
-//                                                        Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
-//                                                        atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        break;
-//
-//                                                    case 0:
-//                                                        atras = false;
-//
-//                                                }
-//
-//                                            } while (atras);
-//                                            atras = true;
-//                                            break;
-//                                        case 2:
-//
-//                                            do {
-//                                                String[] bebidaarray = {"ATRAS", "ALCOHOLICA", "Con Gas", "Sin Gas"};
-//                                                int bebida = respuestaBoton(bebidaarray);
-//
-//                                                switch (bebida) {
-//                                                    case 1:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 2:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 3:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 0:
-//                                                        atras = false;
-//
-//                                                }
-//
-//                                            } while (atras);
-//                                            atras = true;
-//                                            break;
-//                                        case 3:
-//                                            do {
-//                                                String[] menuPostre = {"ATRAS", "CALIENTE", "FRIO", "FRUTA"};
-//                                                int postre = respuestaBoton(menuPostre);
-//
-//                                                switch (postre) {
-//                                                    case 1:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 2:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRIO);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 3:
-//                                                        do {
-//                                                            Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
-//                                                            atras = Pruebas.pedir(lista, carrito, objeto);
-//
-//                                                        } while (atras);
-//                                                        atras = true;
-//                                                        break;
-//                                                    case 0:
-//                                                        atras = false;
-//
-//                                                }
-//
-//                                            } while (atras);
-//                                            atras = true;
-//                                            break;
-//                                        case 4:
-//                                            Pruebas.consultarProductos(carrito);
-//                                            break;
-//                                        case 5:
-//                                            boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
-//                                            if (pagado){
-//                                            tpv1.getVentas().add(carrito);
-//                                            }
-//                                            break;
-//                                        case 0:
-//                                            atras = false;
-//                                    }
-//                                } while (atras);
                                 break;
                             //menu administrador
                             case 2:
-
-                                do {
-                                    String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO","VER VENTAS"};
-                                    int administrador = respuestaBoton(menuAdministrador);
-
-                                    switch (administrador) {
-                                        case 1:
-
-                                            break;
-                                        case 2:
-                                            lista.add(new Productos(lista.size() + 1, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
-                                            break;
-                                        case 3:
-                                            break;
-                                        case 4:
-                                            break;
-                                        case 5:
-                                            System.out.println(tpv1);
-                                            break;
-                                        case 0:
-                                            atras = false;
-                                            break;
-                                    }
-                                } while (atras);
+                              Administrador.administrador(lista, tpv1);
+//                                
                                 break;
                             //Opcion para salir
                             case 0:

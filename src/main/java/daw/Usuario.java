@@ -15,13 +15,13 @@ import java.util.Date;
  */
 public class Usuario {
     
-    public static boolean Usuario(ArrayList<Productos> lista,ListaVentas tpv1){
+    public static boolean Usuario(ArrayProductos lista,ListaVentas tpv1){
         boolean atras=true;
         
         
         
                                 Carrito carrito= new Carrito();
-                                //ArrayList<Productos> carrito = new ArrayList<>();
+                                
                                 do {
                                     String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
                                     int usuario = respuestaBoton(menuUsuario);
@@ -37,7 +37,7 @@ public class Usuario {
                                                         do {
 
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -46,14 +46,14 @@ public class Usuario {
                                                     case 2:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
                                                         break;
                                                     case 3:
                                                         Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
-                                                        atras = Pruebas.pedir(lista, carrito, objeto);
+                                                        atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         break;
 
@@ -75,7 +75,7 @@ public class Usuario {
                                                     case 1:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -83,7 +83,7 @@ public class Usuario {
                                                     case 2:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -91,7 +91,7 @@ public class Usuario {
                                                     case 3:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -113,7 +113,7 @@ public class Usuario {
                                                     case 1:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -121,7 +121,7 @@ public class Usuario {
                                                     case 2:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRIO);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
@@ -129,7 +129,7 @@ public class Usuario {
                                                     case 3:
                                                         do {
                                                             Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
-                                                            atras = Pruebas.pedir(lista, carrito, objeto);
+                                                            atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
 
                                                         } while (atras);
                                                         atras = true;
