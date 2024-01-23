@@ -29,7 +29,7 @@ public class Pruebas {
         }
     }
 
-    public static void consultarProductos(Carrito carrito) {
+    public static double consultarProductos(Carrito carrito) {
         String carritoTexto = "Id --- descripcion--- precio--- precio c/iva \n";
         double total = 0;
         double totalIva = 0;
@@ -42,7 +42,7 @@ public class Pruebas {
         }
         carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
         JOptionPane.showMessageDialog(null, carritoTexto);
-
+        return totalIva;
     }
 
     public static ArrayList<Productos> crearListaArray(ArrayList<Productos> lista, Productos producto) {

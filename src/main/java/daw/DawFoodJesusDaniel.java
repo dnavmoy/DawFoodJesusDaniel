@@ -45,27 +45,25 @@ public class DawFoodJesusDaniel {
         boolean atras = true;
 
         //inicializar productos
-        int[] arrayTarjeta = new int[4];
-
-        arrayTarjeta[0] = 1233;
-        arrayTarjeta[1] = 1234;
-        arrayTarjeta[2] = 1235;
-        arrayTarjeta[3] = 1236;
-
+        
+        //InicializadorClases.incializadorProductos();
+        
+        ArrayProductos lista=new ArrayProductos();
+        
         Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
         Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
         Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
         Productos carne = new Productos(4, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
         Productos cerveza = new Productos(5, "Cerveza", 3.2, 0.21, 10, Bebidas.ALCOHOLICA);
         Productos manzana = new Productos(6, "Manzana", 0.75, 0.21, 7, Postre.FRUTA);
-        ArrayList<Productos> lista = new ArrayList();
+        //ArrayList<Productos> lista = new ArrayList();
 
-        lista.add(ensalada);
-        lista.add(gazpacho);
-        lista.add(agua);
-        lista.add(carne);
-        lista.add(cerveza);
-        lista.add(manzana);
+        lista.getListaProductos().add(ensalada);
+        lista.getListaProductos().add(gazpacho);
+        lista.getListaProductos().add(agua);
+        lista.getListaProductos().add(carne);
+        lista.getListaProductos().add(cerveza);
+        lista.getListaProductos().add(manzana);
         //estructura menu
         do {
             String[] menuTpv = {"SALIR", "TPV"};
@@ -85,30 +83,8 @@ public class DawFoodJesusDaniel {
                                 break;
                             //menu administrador
                             case 2:
-
-                                do {
-                                    String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO","VER VENTAS"};
-                                    int administrador = respuestaBoton(menuAdministrador);
-
-                                    switch (administrador) {
-                                        case 1:
-
-                                            break;
-                                        case 2:
-                                            lista.add(new Productos(lista.size() + 1, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
-                                            break;
-                                        case 3:
-                                            break;
-                                        case 4:
-                                            break;
-                                        case 5:
-                                            System.out.println(tpv1);
-                                            break;
-                                        case 0:
-                                            atras = false;
-                                            break;
-                                    }
-                                } while (atras);
+                              Administrador.administrador(lista, tpv1);
+//                                
                                 break;
                             //Opcion para salir
                             case 0:
