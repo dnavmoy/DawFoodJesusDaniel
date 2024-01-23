@@ -144,9 +144,10 @@ public class Usuario {
                                             break;
                                         case 4:
                                             Pruebas.consultarProductos(carrito);
+                                            
                                             break;
                                         case 5:
-                                            //boolean pagado=Funciones.pasarelaPago(new Tarjeta(usuario, respTpv, Date.from(Instant.now()), usuario));
+                                            boolean pagado=Funciones.pasarelaPago(carrito);
                                             //if (pagado){
                                             tpv1.getVentas().add(carrito);
                                             //}

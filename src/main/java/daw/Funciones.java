@@ -14,7 +14,7 @@ import java.util.Date;
 public class Funciones {
     
 
-    public static boolean pasarelaPago(Tarjeta tarjeta){
+    public static boolean pasarelaPago(Carrito carrito){
         boolean correcto=true;
         int numTarjeta=DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
         
