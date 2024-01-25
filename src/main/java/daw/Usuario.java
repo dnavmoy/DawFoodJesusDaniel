@@ -144,7 +144,7 @@ public class Usuario {
                     atras = true;
                     break;
                 case 4:
-                    Pruebas.consultarProductos(carrito);
+                    JOptionPane.showMessageDialog(null, Pruebas.consultarProductos(carrito));
 
                     break;
                 case 5:

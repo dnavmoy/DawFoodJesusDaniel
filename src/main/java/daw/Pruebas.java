@@ -44,7 +44,7 @@ public class Pruebas {
             totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
         }
         carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
-        JOptionPane.showMessageDialog(null, carritoTexto);
+        //JOptionPane.showMessageDialog(null, carritoTexto);
         return carritoTexto;
     }
 
