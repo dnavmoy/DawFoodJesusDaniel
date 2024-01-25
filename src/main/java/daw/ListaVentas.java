@@ -5,6 +5,7 @@
 package daw;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -12,11 +13,13 @@ import java.util.Objects;
  * @author daniel
  */
 public class ListaVentas {
-    
-    private ArrayList ventas;
+
+    private ArrayList<Carrito> ventas;
+    private ArrayList<Date> fecha;
 
     public ListaVentas() {
-        this.ventas = new ArrayList();
+        this.ventas = new ArrayList<Carrito>();
+        this.fecha = new ArrayList<Date>();
     }
 
     public ArrayList getVentas() {
@@ -53,13 +56,20 @@ public class ListaVentas {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ListaVentas{");
-        sb.append("ventas=").append(ventas);
+        
+            sb.append("ventas=").append(ventas);
+            sb.append(", fecha=").append(fecha);
+       
         sb.append('}');
         return sb.toString();
     }
-    
-    
-    
-    
-    
+
+    public ArrayList<Date> getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(ArrayList<Date> fecha) {
+        this.fecha = fecha;
+    }
+
 }

@@ -35,6 +35,10 @@ public class Administrador {
                 break;
             case 5:
                 System.out.println(tpv1);
+                for(int i =0; i<tpv1.getVentas().size();i++){
+                    System.out.println(tpv1.getVentas().get(i));
+                    System.out.println(tpv1.getFecha().get(i));
+                }
                 break;
             case 0:
                 atras = false;

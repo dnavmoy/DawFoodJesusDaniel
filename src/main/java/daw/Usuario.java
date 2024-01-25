@@ -147,9 +147,13 @@ public class Usuario {
                 case 5:
                     boolean pagado = Funciones.pasarelaPago(carrito);
 
-                    if (pagado) {
+                    if (!pagado) {
+                        
                         tpv1.getVentas().add(carrito);
+                        tpv1.getFecha().add(Date.from(Instant.now()));
+                        
                         System.out.println("ha funcionado");
+                        
                     }
                     atras=false;
                     break;
