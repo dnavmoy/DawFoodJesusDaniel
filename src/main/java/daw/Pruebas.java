@@ -5,7 +5,9 @@
 package daw;
 
 import static daw.DawFoodJesusDaniel.respuestaJopt;
+import static daw.DawFoodJesusDaniel.respuestaTexto;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -44,8 +46,24 @@ public class Pruebas {
         JOptionPane.showMessageDialog(null, carritoTexto);
         return totalIva;
     }
-    
-    public static double sacarTotal(Carrito carrito){
+
+    public static double consultarProductos(ArrayProductos lista) {
+        String listaTexto = "Id --- descripcion--- precio--- precio c/iva \n";
+        double total = 0;
+        double totalIva = 0;
+        Iterator<Productos> it = lista.getListaProductos().iterator();
+        while (it.hasNext()) {
+            Productos nuevo = it.next();
+            listaTexto = listaTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "--" + (1 + nuevo.getIva()) * nuevo.getPrecio() + "\n");
+            total += nuevo.getPrecio();
+            totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
+        }
+
+        JOptionPane.showMessageDialog(null, listaTexto);
+        return totalIva;
+    }
+
+    public static double sacarTotal(Carrito carrito) {
         double total = 0;
         double totalIva = 0;
         Iterator<Productos> it = carrito.getCesta().iterator();
@@ -123,4 +141,43 @@ public class Pruebas {
         return atras;
     }
 
+    public static void cambiarProducto(ArrayProductos lista, int id) {
+//        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
+//
+//        Productos x = new Productos(id, "", 0, 0, 0, Bebidas.CON_GAS);
+//
+//        int posicion = Collections.binarySearch(lista.getListaProductos(),
+//                x,
+//                ((k1, k2) -> k1.getID() - k2.getID()));
+//
+//        lista.getListaProductos().remove(posicion);
+        borrarProducto(lista, id);
+        lista.getListaProductos().add(new Productos(id, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
+
+    }
+
+    
+    public static void borrarProducto(ArrayProductos lista, int id){
+        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
+
+        Productos x = new Productos(id, "", 0, 0, 0, Bebidas.CON_GAS);
+
+        int posicion = Collections.binarySearch(lista.getListaProductos(),
+                x,
+                ((k1, k2) -> k1.getID() - k2.getID()));
+
+        lista.getListaProductos().remove(posicion);
+        
+    }
+    
+    public static int ultimoId(ArrayProductos lista){
+        int ultimaPosicion=0;
+        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
+        ultimaPosicion=lista.getListaProductos().size();
+        int devolver=lista.getListaProductos().get(ultimaPosicion-1).getID();
+        
+        return devolver;
+    }
+    
+    
 }

@@ -14,10 +14,10 @@ import java.util.Objects;
 public class Carrito {
  
     
-    private ArrayList cesta;
+    private ArrayList<Productos> cesta;
 
     public Carrito() {
-        this.cesta = new ArrayList();
+        this.cesta = new ArrayList<>();
     }
     
 

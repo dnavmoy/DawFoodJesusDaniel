@@ -13,13 +13,13 @@ import java.util.Objects;
  */
 public class ArrayProductos {
     
-    private ArrayList ListaProductos;
+    private ArrayList<Productos> ListaProductos;
 
     public ArrayProductos() {
-        this.ListaProductos = new ArrayList();
+        this.ListaProductos = new ArrayList<>();
     }
 
-    public ArrayList getListaProductos() {
+    public ArrayList<Productos> getListaProductos() {
         return ListaProductos;
     }
 

@@ -7,6 +7,7 @@ package daw;
 import static daw.DawFoodJesusDaniel.respuestaBoton;
 import static daw.DawFoodJesusDaniel.respuestaJopt;
 import static daw.DawFoodJesusDaniel.respuestaTexto;
+import static daw.DawFoodJesusDaniel.respuestaDouble;
 import java.util.ArrayList;
 
 /**
@@ -19,19 +20,26 @@ public class Administrador {
         boolean atras=true;
     
         do {
-                                    String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO", "VER VENTAS"};
+        String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO", "VER VENTAS"};
         int administrador = respuestaBoton(menuAdministrador);
 
         switch (administrador) {
             case 1:
-
+                int idProducto=respuestaJopt("que producto vas a cambiar?");
+                Pruebas.cambiarProducto(lista, idProducto);
                 break;
             case 2:
-                lista.getListaProductos().add(new Productos(lista.getListaProductos().size() + 1, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
+                
+                lista.getListaProductos().add(new Productos(Pruebas.ultimoId(lista)+1,
+                        respuestaTexto("introduce descripcion"), respuestaDouble("introduce precio"), 
+                        respuestaDouble("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
                 break;
             case 3:
+                int idProd=respuestaJopt("que producto vas a borrar?");
+                Pruebas.borrarProducto(lista, idProd);
                 break;
             case 4:
+                Pruebas.consultarProductos(lista);
                 break;
             case 5:
                 System.out.println(tpv1);

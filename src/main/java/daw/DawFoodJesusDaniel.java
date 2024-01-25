@@ -45,10 +45,8 @@ public class DawFoodJesusDaniel {
         boolean atras = true;
 
         //inicializar productos
-        
-                
-        ArrayProductos lista=InicializadorClases.incializadorProductos();
-        
+        ArrayProductos lista = InicializadorClases.incializadorProductos();
+
 //       
         //estructura menu
         do {
@@ -60,16 +58,15 @@ public class DawFoodJesusDaniel {
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
-                       
 
                         switch (respuesta) {
 
                             case 1:
-                                Usuario.Usuario(lista,tpv1);
+                                Usuario.Usuario(lista, tpv1);
                                 break;
                             //menu administrador
                             case 2:
-                              Administrador.administrador(lista, tpv1);
+                                Administrador.administrador(lista, tpv1);
 //                                
                                 break;
                             //Opcion para salir
@@ -86,14 +83,23 @@ public class DawFoodJesusDaniel {
 
         } while (salir);
 
-    
     }
+
     public static int respuestaJopt(String texto) {
+        int respuesta = 0;
+        boolean incorrecto = true;
+        do {
+            try {
+                respuesta = Integer.parseInt(JOptionPane.showInputDialog(texto));
+                incorrecto = false;
+            } catch (NumberFormatException nf) {
+                JOptionPane.showMessageDialog(null, "introduce valor valido");
 
-        int respuesta = Integer.parseInt(JOptionPane.showInputDialog(texto));
-        return respuesta;
-
-    }
+            }
+        }while (incorrecto);
+            return respuesta;
+        }
+    
 
     public static int respuestaBoton(String[] menu) {
 
@@ -115,4 +121,19 @@ public class DawFoodJesusDaniel {
         return respuesta;
     }
 
-}
+    public static double respuestaDouble(String menu) {
+        double respuesta = 0;
+        boolean incorrecto = true;
+        do {
+            try {
+                respuesta = Double.parseDouble(JOptionPane.showInputDialog(menu));
+                incorrecto = false;
+            } catch (NumberFormatException nf) {
+                JOptionPane.showMessageDialog(null, "introduce valor valido");
+
+            }
+        }while (incorrecto);
+            return respuesta;
+        }
+
+    }
