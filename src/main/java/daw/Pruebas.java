@@ -31,10 +31,11 @@ public class Pruebas {
         }
     }
 
-    public static double consultarProductos(Carrito carrito) {
+    public static String consultarProductos(Carrito carrito) {
         String carritoTexto = "Id --- descripcion--- precio--- precio c/iva \n";
         double total = 0;
-        double totalIva = 0;
+        double totalIva=0;
+        String texto = "";
         Iterator<Productos> it = carrito.getCesta().iterator();
         while (it.hasNext()) {
             Productos nuevo = it.next();
@@ -44,7 +45,7 @@ public class Pruebas {
         }
         carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
         JOptionPane.showMessageDialog(null, carritoTexto);
-        return totalIva;
+        return carritoTexto;
     }
 
     public static double consultarProductos(ArrayProductos lista) {
