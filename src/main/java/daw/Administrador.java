@@ -8,6 +8,7 @@ import static daw.DawFoodJesusDaniel.respuestaBoton;
 import static daw.DawFoodJesusDaniel.respuestaJopt;
 import static daw.DawFoodJesusDaniel.respuestaTexto;
 import static daw.DawFoodJesusDaniel.respuestaDouble;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -42,11 +43,16 @@ public class Administrador {
                 Pruebas.consultarProductos(lista);
                 break;
             case 5:
-                System.out.println(tpv1);
+               String mostrar="";
                 for(int i =0; i<tpv1.getVentas().size();i++){
-                    System.out.println(tpv1.getVentas().get(i));
-                    System.out.println(tpv1.getFecha().get(i));
+                    mostrar=mostrar.concat(tpv1.getId().get(i)+"---" + tpv1.getFecha());
+                    mostrar=mostrar.concat("\n"+tpv1.getVentas().get(i).toString());
+                    
+                    
+                    
+                    
                 }
+                JOptionPane.showMessageDialog(null, mostrar);
                 break;
             case 0:
                 atras = false;

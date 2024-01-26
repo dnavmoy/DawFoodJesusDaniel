@@ -14,21 +14,25 @@ import java.util.Objects;
  */
 public class ListaVentas {
 
+    private ArrayList<Integer> id;
     private ArrayList<Carrito> ventas;
     private ArrayList<Date> fecha;
 
     public ListaVentas() {
+        this.id = new ArrayList<Integer>();
         this.ventas = new ArrayList<Carrito>();
         this.fecha = new ArrayList<Date>();
     }
 
-    public ArrayList getVentas() {
+    public ArrayList<Carrito> getVentas() {
         return ventas;
     }
 
-    public void setVentas(ArrayList ventas) {
+    public void setVentas(ArrayList<Carrito> ventas) {
         this.ventas = ventas;
     }
+    
+    
 
     @Override
     public int hashCode() {
@@ -71,5 +75,15 @@ public class ListaVentas {
     public void setFecha(ArrayList<Date> fecha) {
         this.fecha = fecha;
     }
+
+    public ArrayList<Integer> getId() {
+        return id;
+    }
+
+    public void setId(ArrayList<Integer> id) {
+        this.id = id;
+    }
+
+  
 
 }

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Usuario {
 
-    public static boolean Usuario(ArrayProductos lista, ListaVentas tpv1) {
+    public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta) {
         boolean atras = true;
 
         Carrito carrito = new Carrito();
@@ -37,7 +37,7 @@ public class Usuario {
 
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
@@ -46,14 +46,14 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
                             case 3:
                                 Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
                                 atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 break;
 
                             case 0:
@@ -75,7 +75,7 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
@@ -83,7 +83,7 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
@@ -91,7 +91,7 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
@@ -113,7 +113,6 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
 
                                 } while (atras);
                                 atras = true;
@@ -122,7 +121,7 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRIO);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
+
                                 } while (atras);
                                 atras = true;
                                 break;
@@ -130,7 +129,6 @@ public class Usuario {
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
                                     atras = Pruebas.pedir(lista.getListaProductos(), carrito, objeto);
-                                    //System.out.println(Pruebas.consultarProductos(carrito));
 
                                 } while (atras);
                                 atras = true;
@@ -144,7 +142,8 @@ public class Usuario {
                     atras = true;
                     break;
                 case 4:
-                    Pruebas.consultarProductos(carrito);
+                    String carritoTexto = Pruebas.consultarProductos(carrito);
+                    JOptionPane.showMessageDialog(null, carritoTexto);
 
                     break;
                 case 5:
@@ -152,9 +151,14 @@ public class Usuario {
 
                     if (!pagado) {
 
-                        tpv1.getVentas().add(carrito);
-                        tpv1.getFecha().add(Date.from(Instant.now()));
-                        Pruebas.consultarProductos(carrito);
+                        ticketVenta.getVentas().add(carrito);
+                        ticketVenta.getFecha().add(Date.from(Instant.now()));
+                        ticketVenta.getId().add(Pruebas.ultimoTicket(ticketVenta)+1);
+                        String Ticket = Pruebas.consultarProductos(carrito);
+                        String mostrarTicket= "NUMERO DE PEDIDO : "+ Pruebas.ultimoTicket(ticketVenta)+"\n";
+                        mostrarTicket=mostrarTicket.concat(Ticket);
+                        JOptionPane.showMessageDialog(null, mostrarTicket);
+                        
 
                     }
                     atras = false;
@@ -164,7 +168,7 @@ public class Usuario {
                     atras = false;
             }
         } while (atras);
-
+        atras=true;
         return atras;
     }
 

@@ -12,18 +12,18 @@ import javax.swing.JOptionPane;
  *
  * @author daniel
  */
-//
+//-- menu tpv-> crear clase tpv con ArrayProductos-carrito-contraseña administrador
 //menu desplegable-> seleccionar tpv
 //->  usuario, administrador,
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
 //	opcion-> pedir, consultar precio
 //todo momento atras-inicio-añadir producto con cantidad.
+//--- ticket numero de ticket
 //
-//
-//administrador-> contraseña -> menu cambios
-//
-//pasarela de pago
+//administrador-> contraseña************* -> menu cambios->cambio mismo id***************
+//administrador-> mostrar lista ventas de forma visible
+//pasarela de pago******* falta cvv y fecha 
 //
 //clases
 //
@@ -54,7 +54,7 @@ public class DawFoodJesusDaniel {
             int respTpv = respuestaBoton(menuTpv);
             switch (respTpv) {
                 case 1:
-                    ListaVentas tpv1 = new ListaVentas();
+                    ListaVentas listaTickets = new ListaVentas();
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
@@ -62,11 +62,11 @@ public class DawFoodJesusDaniel {
                         switch (respuesta) {
 
                             case 1:
-                                Usuario.Usuario(lista, tpv1);
+                                Usuario.Usuario(lista, listaTickets);
                                 break;
                             //menu administrador
                             case 2:
-                                Administrador.administrador(lista, tpv1);
+                                Administrador.administrador(lista, listaTickets);
 //                                
                                 break;
                             //Opcion para salir

@@ -17,15 +17,15 @@ public class Carrito {
     private ArrayList<Productos> cesta;
 
     public Carrito() {
-        this.cesta = new ArrayList<>();
+        this.cesta = new ArrayList<Productos>();
     }
     
 
-    public ArrayList getCesta() {
+    public ArrayList<Productos> getCesta() {
         return cesta;
     }
 
-    public void setCesta(ArrayList cesta) {
+    public void setCesta(ArrayList<Productos> cesta) {
         this.cesta = cesta;
     }
 

@@ -44,7 +44,7 @@ public class Pruebas {
             totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
         }
         carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
-        JOptionPane.showMessageDialog(null, carritoTexto);
+        //JOptionPane.showMessageDialog(null, carritoTexto);
         return carritoTexto;
     }
 
@@ -142,6 +142,9 @@ public class Pruebas {
         return atras;
     }
 
+    // metodos administrador
+    
+    
     public static void cambiarProducto(ArrayProductos lista, int id) {
 //        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
 //
@@ -180,5 +183,18 @@ public class Pruebas {
         return devolver;
     }
     
+    public static int ultimoTicket(ListaVentas lista){
+        int ultimaPosicion=0;
+        int devolver=0;
+        Collections.sort(lista.getId(),(k1, k2) -> Integer.compare(k1, k2));
+        ultimaPosicion=lista.getId().size();
+        if(ultimaPosicion!=0){
+            devolver=lista.getId().get(ultimaPosicion-1);
+        }
+        
+        
+        return devolver;
+        
+    }
     
 }
