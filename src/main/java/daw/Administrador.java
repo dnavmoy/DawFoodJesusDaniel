@@ -4,10 +4,10 @@
  */
 package daw;
 
-import static daw.DawFoodJesusDaniel.respuestaBoton;
-import static daw.DawFoodJesusDaniel.respuestaJopt;
-import static daw.DawFoodJesusDaniel.respuestaTexto;
-import static daw.DawFoodJesusDaniel.respuestaDouble;
+import static daw.metodosTpv.respuestaBoton;
+import static daw.metodosTpv.respuestaJopt;
+import static daw.metodosTpv.respuestaTexto;
+import static daw.metodosTpv.respuestaDouble;
 import javax.swing.JOptionPane;
 
 

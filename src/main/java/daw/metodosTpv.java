@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
  *
  * @author daniel
  */
-//-- menu tpv-> crear clase tpv con ArrayProductos-carrito-contraseña administrador
-//menu desplegable-> seleccionar tpv
+//-- menu encenderTpv-> crear clase encenderTpv con ArrayProductos-carrito-contraseña administrador
+//menu desplegable-> seleccionar encenderTpv
 //->  usuario, administrador,
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
 //	opcion-> pedir, consultar precio
 //todo momento atras-inicio-añadir producto con cantidad.
-//--- ticket numero de ticket
+//--- ticket numero de ticket--> cambia al contador constructor******
 //
 //administrador-> contraseña************* -> menu cambios->cambio mismo id***************
 //administrador-> mostrar lista ventas de forma visible
@@ -33,19 +33,19 @@ import javax.swing.JOptionPane;
 //arraylist pedidos
 //arraylist- lista pedidos
 //clase carrito!
-//clase tpv
+//clase encenderTpv
 //clase ticket
 //
 //tpv- constraseñasadministrador 
-public class DawFoodJesusDaniel {
+public class metodosTpv {
 
-    public static void main(String[] args) {
+    public static void encenderTpv(TPV tpv) {
 
         boolean salir = true;
         boolean atras = true;
 
         //inicializar productos
-        ArrayProductos lista = InicializadorClases.incializadorProductos();
+        ArrayProductos lista = tpv.getProductosTpv();
 
 //       
         //estructura menu
@@ -54,7 +54,7 @@ public class DawFoodJesusDaniel {
             int respTpv = respuestaBoton(menuTpv);
             switch (respTpv) {
                 case 1:
-                    ListaVentas listaTickets = new ListaVentas();
+                    ListaVentas listaTickets = tpv.getListaV();
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
@@ -62,7 +62,7 @@ public class DawFoodJesusDaniel {
                         switch (respuesta) {
 
                             case 1:
-                                Usuario.Usuario(lista, listaTickets);
+                                Usuario.Usuario(lista, listaTickets,tpv.getCesta());
                                 break;
                             //menu administrador
                             case 2:

@@ -4,8 +4,8 @@
  */
 package daw;
 
-import static daw.DawFoodJesusDaniel.respuestaJopt;
-import static daw.DawFoodJesusDaniel.respuestaTexto;
+import static daw.metodosTpv.respuestaJopt;
+import static daw.metodosTpv.respuestaTexto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -129,7 +129,7 @@ public class Pruebas {
     public static boolean pedir(ArrayList<Productos> lista, Carrito carrito, Productos tipo) {
         boolean atras = true;
 
-        int pedido = DawFoodJesusDaniel.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)));
+        int pedido = metodosTpv.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)));
 
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");

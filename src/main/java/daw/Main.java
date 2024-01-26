@@ -10,15 +10,15 @@ import java.util.ArrayList;
  *
  * @author daniel
  */
-public class ListaProductos {
-    
-    //public ArrayList stock;
-
-    //public ListaProductos() {
-     //   this.stock = new ArrayList();
+public class Main {
+ 
+    public static void main(String[] args) {
         
-    //}
-    
-    
+        ArrayList<TPV> listaTpvs = new ArrayList<>();
+        listaTpvs.add(new TPV());
+        metodosTpv.encenderTpv(listaTpvs.get(0));
+        
+        
+    }
     
 }

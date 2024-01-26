@@ -20,13 +20,13 @@ public class Funciones {
 
         do {
             String[] menuPago =  {"SALIR", "PAGAR"};
-            int respuesta = DawFoodJesusDaniel.respuestaBoton(menuPago);
+            int respuesta = metodosTpv.respuestaBoton(menuPago);
             switch (respuesta) {
                 case 0 ->
                     correcto = false;
 
                 case 1 -> {
-                    int numTarjeta = DawFoodJesusDaniel.respuestaJopt("Intoduce tarjeta");
+                    int numTarjeta = metodosTpv.respuestaJopt("Intoduce tarjeta");
                     for (int i = 0; i < tarjetas().size(); i++) {
 
                         if (numTarjeta == tarjetas().get(i).getNumTarjeta()) {

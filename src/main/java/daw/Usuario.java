@@ -4,9 +4,8 @@
  */
 package daw;
 
-import static daw.DawFoodJesusDaniel.respuestaBoton;
+import static daw.metodosTpv.respuestaBoton;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -16,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class Usuario {
 
-    public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta) {
+    public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta, Carrito carrito) {
         boolean atras = true;
 
-        Carrito carrito = new Carrito();
+        
 
         do {
             String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
