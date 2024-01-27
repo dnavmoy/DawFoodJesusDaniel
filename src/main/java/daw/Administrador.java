@@ -19,7 +19,7 @@ public class Administrador {
 
     public static void administrador(ArrayProductos lista,ListaVentas tpv1){
         boolean atras=true;
-    
+       
         do {
         String[] menuAdministrador = {"ATRAS", "CAMBIAR PRODUCTO", "ALTA PRODUCTO", "BORRAR PRODUCTO", "CONSULTA PRODUCTO", "VER VENTAS"};
         int administrador = respuestaBoton(menuAdministrador);

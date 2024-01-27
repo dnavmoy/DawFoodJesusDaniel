@@ -150,7 +150,7 @@ public class Usuario {
                 case 5:
                     boolean pagado = Funciones.pasarelaPago(carrito);
 
-                    if (!pagado) {
+                    if (pagado) {
                         
                         ticketVenta.getVentas().add(carrito);
                         ticketVenta.getFecha().add(Date.from(Instant.now()));

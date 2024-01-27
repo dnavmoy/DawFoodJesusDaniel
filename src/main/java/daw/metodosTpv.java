@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 //->  usuario, administrador,
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
-//	opcion-> pedir, consultar precio
+//	opcion-> pedir, consultar precio****** deja pagar pedidos a 0******
 //todo momento atras-inicio-añadir producto con cantidad.
 //--- ticket numero de ticket--> cambia al contador constructor******
 //
@@ -50,6 +50,9 @@ public class metodosTpv {
 //       
         //estructura menu
         do {
+            System.out.println("la contraseña de aministrador es: " + tpv.getPassword());
+           
+            
             String[] menuTpv = {"SALIR", "Encender Tpv"};
             int respTpv = respuestaBoton(menuTpv);
             
@@ -68,7 +71,13 @@ public class metodosTpv {
                                 break;
                             //menu administrador
                             case 2:
-                                Administrador.administrador(lista, listaVentas);
+                                 String passwordIntroducida=respuestaTexto("introduce la contraseña");
+                                if(passwordIntroducida.equals(tpv.getPassword())){
+                                    Administrador.administrador(lista, listaVentas);
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "contraseña erronea");
+                                }
+                                
 //                                
                                 break;
                             //Opcion para salir

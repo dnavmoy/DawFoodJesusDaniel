@@ -7,7 +7,7 @@ package daw;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +18,15 @@ public class Funciones {
 
     public static boolean pasarelaPago(Carrito carrito) {
 
-        boolean correcto = true;
+        boolean repetir = true;
+        boolean correcto = false;
 
         do {
             String[] menuPago = {"SALIR", "PAGAR"};
             int respuesta = metodosTpv.respuestaBoton(menuPago);
             switch (respuesta) {
                 case 0 ->
-                    correcto = false;
+                    repetir = false;
 
                 case 1 -> {
                     ArrayList<Tarjeta> lista = InicializadorClases.tarjetas();
@@ -45,7 +46,6 @@ public class Funciones {
                             cvvProbar = metodosTpv.respuestaJopt("introduce Cvv");
                             fechaCadProbar = fechaValida();
 
-                            
                             if (cvvProbar < 0 || cvvProbar > 999) {
                                 JOptionPane.showMessageDialog(null, "cvv debe ser de tres cifras");
 
@@ -59,8 +59,9 @@ public class Funciones {
 
                             if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
                                 lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - Pruebas.sacarTotal(carrito));
-                                correcto = false;
+                                repetir = false;
                                 JOptionPane.showMessageDialog(null, "Pago Correcto");
+                                correcto = true;
                             } else {
                                 JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
                             }
@@ -77,7 +78,7 @@ public class Funciones {
                 }
             }
 
-        } while (correcto);
+        } while (repetir);
 
         return correcto;
     }
@@ -88,10 +89,35 @@ public class Funciones {
         do
         try {
             fechaValida = LocalDate.of(metodosTpv.respuestaJopt("introduce año"), metodosTpv.respuestaJopt("introduce mes"), 30);
-            error=false;
+            error = false;
         } catch (java.time.DateTimeException jtd) {
             JOptionPane.showMessageDialog(null, "fecha no valida");
         } while (error);
         return fechaValida;
+    }
+    
+    //CREAR METODO CONTRASEÑA
+    
+    public static String password(){
+        char[] arrayChar= {'#','$','%','&','(',')','*','+',',','-','.',':',';','<','=','>','@'};
+        Random r = new Random();
+        char[] chars=new char[6];
+        chars[0]=(char)r.nextInt(97,123);
+        chars[1]=(char)r.nextInt(65,91);
+        chars[2]=(char) r.nextInt(48,58);
+        chars[3]=arrayChar[r.nextInt(arrayChar.length)];
+        chars[4]=(char)r.nextInt(33,123);
+        chars[5]=(char)r.nextInt(33,123);
+        char extra;
+        for(int i=0; i<chars.length;i++){
+            int posicion1=r.nextInt(chars.length);
+            int posicion2=r.nextInt(chars.length);
+            extra=chars[posicion1];
+            chars[posicion1]=chars[posicion2];
+            chars[posicion2]=extra;
+        }
+        String password=String.valueOf(chars);
+        
+          return password;     
     }
 }
