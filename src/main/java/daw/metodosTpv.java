@@ -40,21 +40,22 @@ import javax.swing.JOptionPane;
 public class metodosTpv {
 
     public static void encenderTpv(TPV tpv) {
-
+        
         boolean salir = true;
         boolean atras = true;
 
         //inicializar productos
         ArrayProductos lista = tpv.getProductosTpv();
-
+        ListaVentas listaVentas = tpv.getListaV();
 //       
         //estructura menu
         do {
-            String[] menuTpv = {"SALIR", "TPV"};
+            String[] menuTpv = {"SALIR", "Encender Tpv"};
             int respTpv = respuestaBoton(menuTpv);
+            
             switch (respTpv) {
                 case 1:
-                    ListaVentas listaTickets = tpv.getListaV();
+                    
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
@@ -62,11 +63,12 @@ public class metodosTpv {
                         switch (respuesta) {
 
                             case 1:
-                                Usuario.Usuario(lista, listaTickets,tpv.getCesta());
+                                Usuario.Usuario(lista, listaVentas);
+                                
                                 break;
                             //menu administrador
                             case 2:
-                                Administrador.administrador(lista, listaTickets);
+                                Administrador.administrador(lista, listaVentas);
 //                                
                                 break;
                             //Opcion para salir

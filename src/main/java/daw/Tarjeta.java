@@ -4,6 +4,7 @@
  */
 package daw;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,10 +16,10 @@ public class Tarjeta {
     
     private int numTarjeta;
     private int cvv;
-    private Date fechaVencimiento;
+    private LocalDate fechaVencimiento;
     private double Saldo;
 
-    public Tarjeta(int numTarjeta, int cvv, Date fechaVencimiento, double Saldo) {
+    public Tarjeta(int numTarjeta, int cvv, LocalDate fechaVencimiento, double Saldo) {
         this.numTarjeta = numTarjeta;
         this.cvv = cvv;
         this.fechaVencimiento = fechaVencimiento;
@@ -41,11 +42,11 @@ public class Tarjeta {
         this.cvv = cvv;
     }
 
-    public Date getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

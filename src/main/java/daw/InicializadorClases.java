@@ -4,6 +4,10 @@
  */
 package daw;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author daniel
@@ -31,5 +35,16 @@ public class InicializadorClases {
         return lista;
      
  }   
+
+    public static ArrayList<Tarjeta> tarjetas() {
+        Tarjeta t1 = new Tarjeta(1234, 123, LocalDate.of(2025, 12, 30), 1);
+        Tarjeta t2 = new Tarjeta(4321, 321, LocalDate.of(2024, 12, 30), 200);
+        Tarjeta t3 = new Tarjeta(1357, 135, LocalDate.of(2026, 12, 30), 12000);
+        ArrayList<Tarjeta> listaTarjeta = new ArrayList();
+        listaTarjeta.add(t1);
+        listaTarjeta.add(t2);
+        listaTarjeta.add(t3);
+        return listaTarjeta;
+    }
     
 }

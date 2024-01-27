@@ -6,6 +6,7 @@ package daw;
 
 import static daw.metodosTpv.respuestaBoton;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -15,14 +16,15 @@ import javax.swing.JOptionPane;
  */
 public class Usuario {
 
-    public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta, Carrito carrito) {
+    public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta) {
         boolean atras = true;
-
+         Carrito carrito=new Carrito();
         
 
         do {
             String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
             int usuario = respuestaBoton(menuUsuario);
+            
             switch (usuario) {
                 case 1:
 
@@ -149,7 +151,7 @@ public class Usuario {
                     boolean pagado = Funciones.pasarelaPago(carrito);
 
                     if (!pagado) {
-
+                        
                         ticketVenta.getVentas().add(carrito);
                         ticketVenta.getFecha().add(Date.from(Instant.now()));
                         ticketVenta.getId().add(Pruebas.ultimoTicket(ticketVenta)+1);
@@ -158,6 +160,7 @@ public class Usuario {
                         mostrarTicket=mostrarTicket.concat(Ticket);
                         JOptionPane.showMessageDialog(null, mostrarTicket);
                         
+                       
 
                     }
                     atras = false;

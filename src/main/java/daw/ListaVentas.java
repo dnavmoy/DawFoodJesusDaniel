@@ -19,9 +19,9 @@ public class ListaVentas {
     private ArrayList<Date> fecha;
 
     public ListaVentas() {
-        this.id = new ArrayList<Integer>();
-        this.ventas = new ArrayList<Carrito>();
-        this.fecha = new ArrayList<Date>();
+        this.id = new ArrayList<>();
+        this.ventas = new ArrayList<>();
+        this.fecha = new ArrayList<>();
     }
 
     public ArrayList<Carrito> getVentas() {

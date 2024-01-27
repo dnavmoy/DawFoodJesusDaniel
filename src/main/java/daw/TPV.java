@@ -15,13 +15,12 @@ public class TPV {
     
     private int id=0;
     private ListaVentas listaV;
-    private Carrito cesta;
+    
     private ArrayProductos productosTpv;
 
     public TPV() {
         this.id = id;
         this.listaV = new ListaVentas();
-        this.cesta = new Carrito();
         this.productosTpv= new ArrayProductos();
         this.productosTpv= InicializadorClases.incializadorProductos();
         
@@ -39,9 +38,7 @@ public class TPV {
         return listaV;
     }
 
-    public Carrito getCesta() {
-        return cesta;
-    }
+ 
 
     public ArrayProductos getProductosTpv() {
         return productosTpv;
@@ -55,9 +52,7 @@ public class TPV {
         this.listaV = listaV;
     }
 
-    public void setCesta(Carrito cesta) {
-        this.cesta = cesta;
-    }
+    
 
     public void setProductosTpv(ArrayProductos productosTpv) {
         this.productosTpv = productosTpv;
@@ -68,7 +63,7 @@ public class TPV {
         int hash = 5;
         hash = 59 * hash + this.id;
         hash = 59 * hash + Objects.hashCode(this.listaV);
-        hash = 59 * hash + Objects.hashCode(this.cesta);
+      
         hash = 59 * hash + Objects.hashCode(this.productosTpv);
         return hash;
     }
@@ -91,9 +86,7 @@ public class TPV {
         if (!Objects.equals(this.listaV, other.listaV)) {
             return false;
         }
-        if (!Objects.equals(this.cesta, other.cesta)) {
-            return false;
-        }
+       
         return Objects.equals(this.productosTpv, other.productosTpv);
     }
 
@@ -103,7 +96,7 @@ public class TPV {
         sb.append("TPV{");
         sb.append("id=").append(id);
         sb.append(", listaV=").append(listaV);
-        sb.append(", cesta=").append(cesta);
+       
         sb.append(", productosTpv=").append(productosTpv);
         sb.append('}');
         return sb.toString();

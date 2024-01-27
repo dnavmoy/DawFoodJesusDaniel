@@ -23,28 +23,29 @@ public class Pruebas {
             JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
         } else {
             producto.setStock(producto.getStock() - cantidad);
-            for (int i = 0; i < cantidad; i++) {
-                carrito.getCesta().add(producto);
-                //carrito.add(producto);
-
-            }
+            carrito.getCesta().add(producto);
+            carrito.getCantidad().add(cantidad);
         }
     }
 
     public static String consultarProductos(Carrito carrito) {
-        String carritoTexto = "Id --- descripcion--- precio--- precio c/iva \n";
+        String carritoTexto = "Id --- descripcion-- cantidad-- precio--- precio c/iva ---total linea\n";
         double total = 0;
-        double totalIva=0;
+        double totalIva = 0;
         String texto = "";
         Iterator<Productos> it = carrito.getCesta().iterator();
+        Iterator<Integer> it2 = carrito.getCantidad().iterator();
+
         while (it.hasNext()) {
             Productos nuevo = it.next();
-            carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "--" + (1 + nuevo.getIva()) * nuevo.getPrecio() + "\n");
-            total += nuevo.getPrecio();
-            totalIva += (1 + nuevo.getIva()) * nuevo.getPrecio();
+            int cantidad = it2.next();          
+            double precioConIva = nuevo.getPrecio() * (1 + nuevo.getIva());
+            carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "-- " + cantidad + "--" + nuevo.getPrecio() + "--" + precioConIva + " = " + precioConIva * cantidad + "\n");
+            total += nuevo.getPrecio() * cantidad;
+            totalIva += precioConIva * cantidad;
         }
         carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
-        //JOptionPane.showMessageDialog(null, carritoTexto);
+      
         return carritoTexto;
     }
 
@@ -143,8 +144,6 @@ public class Pruebas {
     }
 
     // metodos administrador
-    
-    
     public static void cambiarProducto(ArrayProductos lista, int id) {
 //        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
 //
@@ -160,8 +159,7 @@ public class Pruebas {
 
     }
 
-    
-    public static void borrarProducto(ArrayProductos lista, int id){
+    public static void borrarProducto(ArrayProductos lista, int id) {
         Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
 
         Productos x = new Productos(id, "", 0, 0, 0, Bebidas.CON_GAS);
@@ -171,30 +169,32 @@ public class Pruebas {
                 ((k1, k2) -> k1.getID() - k2.getID()));
 
         lista.getListaProductos().remove(posicion);
-        
+
     }
-    
-    public static int ultimoId(ArrayProductos lista){
-        int ultimaPosicion=0;
+
+    public static int ultimoId(ArrayProductos lista) {
+        int ultimaPosicion = 0;
         Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
-        ultimaPosicion=lista.getListaProductos().size();
-        int devolver=lista.getListaProductos().get(ultimaPosicion-1).getID();
-        
+        ultimaPosicion = lista.getListaProductos().size();
+        int devolver = lista.getListaProductos().get(ultimaPosicion - 1).getID();
+
         return devolver;
     }
-    
-    public static int ultimoTicket(ListaVentas lista){
-        int ultimaPosicion=0;
-        int devolver=0;
-        Collections.sort(lista.getId(),(k1, k2) -> Integer.compare(k1, k2));
-        ultimaPosicion=lista.getId().size();
-        if(ultimaPosicion!=0){
-            devolver=lista.getId().get(ultimaPosicion-1);
+
+    public static int ultimoTicket(ListaVentas lista) {
+        int ultimaPosicion = 0;
+        int devolver = 0;
+        Collections.sort(lista.getId(), (k1, k2) -> Integer.compare(k1, k2));
+        ultimaPosicion = lista.getId().size();
+        if (ultimaPosicion != 0) {
+            devolver = lista.getId().get(ultimaPosicion - 1);
         }
-        
-        
+
         return devolver;
-        
+
     }
+
+    
+    
     
 }

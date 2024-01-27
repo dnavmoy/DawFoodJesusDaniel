@@ -4,7 +4,9 @@
  */
 package daw;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -19,29 +21,59 @@ public class Funciones {
         boolean correcto = true;
 
         do {
-            String[] menuPago =  {"SALIR", "PAGAR"};
+            String[] menuPago = {"SALIR", "PAGAR"};
             int respuesta = metodosTpv.respuestaBoton(menuPago);
             switch (respuesta) {
                 case 0 ->
                     correcto = false;
 
                 case 1 -> {
-                    int numTarjeta = metodosTpv.respuestaJopt("Intoduce tarjeta");
-                    for (int i = 0; i < tarjetas().size(); i++) {
+                    ArrayList<Tarjeta> lista = InicializadorClases.tarjetas();
+                    Collections.sort(lista, (k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta()));
 
-                        if (numTarjeta == tarjetas().get(i).getNumTarjeta()) {
-                            System.out.println("Tarjeta correcta, comprobando saldo.....");
-                                
+                    Tarjeta x = new Tarjeta(metodosTpv.respuestaJopt("introduce numero tarjeta"), 001, LocalDate.now(), 0);
+                    int cvvProbar;
+                    LocalDate fechaCadProbar;
+                    int posicion = Collections.binarySearch(lista,
+                            x,
+                            ((k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta())));
+
+                    if (posicion >= 0) {
+                        boolean cvvFecha = true;
+
+                        do {
+                            cvvProbar = metodosTpv.respuestaJopt("introduce Cvv");
+                            fechaCadProbar = fechaValida();
+
                             
-                            if (tarjetas().get(i).getSaldo() >= Pruebas.sacarTotal(carrito)) {
+                            if (cvvProbar < 0 || cvvProbar > 999) {
+                                JOptionPane.showMessageDialog(null, "cvv debe ser de tres cifras");
 
-                                tarjetas().get(i).setSaldo(tarjetas().get(i).getSaldo() - Pruebas.sacarTotal(carrito));
+                            } else {
+                                cvvFecha = false;
+                            }
 
+                        } while (cvvFecha);
+
+                        if (lista.get(posicion).getSaldo() >= Pruebas.sacarTotal(carrito)) {
+
+                            if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
+                                lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - Pruebas.sacarTotal(carrito));
                                 correcto = false;
                                 JOptionPane.showMessageDialog(null, "Pago Correcto");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
                             }
-                        } 
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "saldo insuficiente");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "no existe la tarjeta");
                     }
+
+//                        
                 }
             }
 
@@ -50,20 +82,16 @@ public class Funciones {
         return correcto;
     }
 
-    public static ArrayList<Tarjeta> tarjetas() {
-
-        Tarjeta t1 = new Tarjeta(1234, 123, new Date(2025, 12, 30), 1);
-        Tarjeta t2 = new Tarjeta(4321, 321, new Date(2024, 12, 30), 200);
-        Tarjeta t3 = new Tarjeta(1357, 135, new Date(2026, 12, 30), 12000);
-
-        ArrayList<Tarjeta> listaTarjeta = new ArrayList();
-
-        listaTarjeta.add(t1);
-        listaTarjeta.add(t2);
-        listaTarjeta.add(t3);
-
-        return listaTarjeta;
-
+    public static LocalDate fechaValida() {
+        LocalDate fechaValida = LocalDate.of(1, 1, 1);
+        boolean error = true;
+        do
+        try {
+            fechaValida = LocalDate.of(metodosTpv.respuestaJopt("introduce año"), metodosTpv.respuestaJopt("introduce mes"), 30);
+            error=false;
+        } catch (java.time.DateTimeException jtd) {
+            JOptionPane.showMessageDialog(null, "fecha no valida");
+        } while (error);
+        return fechaValida;
     }
-
 }
