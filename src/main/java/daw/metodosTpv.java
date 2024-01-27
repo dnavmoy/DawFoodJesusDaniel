@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
 //	opcion-> pedir, consultar precio****** deja pagar pedidos a 0******
+//***************error de stock - quita el del stock al añadirlo al carrito pero no lo devuelve si el carrito se vacia
 //todo momento atras-inicio-añadir producto con cantidad.
 //--- ticket numero de ticket--> cambia al contador constructor******
 //
@@ -118,6 +119,20 @@ public class metodosTpv {
                 null,
                 "Seleccione opcion",
                 "Selector de opciones",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                menu,
+                "usuario");
+
+        return seleccion;
+    }
+        public static int respuestaBoton(String[] menu,String opciones) {
+
+        int seleccion = JOptionPane.showOptionDialog(
+                null,
+                opciones,
+                "Opciones",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,

@@ -168,6 +168,8 @@ public class Usuario {
 
                 case 0:
                     atras = false;
+                    Pruebas.devProductoStock(lista, carrito);
+                    break;
             }
         } while (atras);
         atras=true;

@@ -55,19 +55,20 @@ public class Funciones {
 
                         } while (cvvFecha);
 
-                        if (lista.get(posicion).getSaldo() >= Pruebas.sacarTotal(carrito)) {
+                        if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
 
-                            if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
+                            if (lista.get(posicion).getSaldo() >= Pruebas.sacarTotal(carrito)) {
                                 lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - Pruebas.sacarTotal(carrito));
                                 repetir = false;
                                 JOptionPane.showMessageDialog(null, "Pago Correcto");
                                 correcto = true;
                             } else {
-                                JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
+                                JOptionPane.showMessageDialog(null, "saldo insuficiente");
                             }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "saldo insuficiente");
+                           
+                             JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
                         }
 
                     } else {
