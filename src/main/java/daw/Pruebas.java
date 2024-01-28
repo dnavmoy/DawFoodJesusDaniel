@@ -19,12 +19,16 @@ public class Pruebas {
 
     public static void addProducto(ArrayList<Productos> lista, Carrito carrito, int cantidad, Productos producto) {
 
-        if (cantidad > producto.getStock()) {
-            JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
+        if (cantidad<=0) {
+            JOptionPane.showMessageDialog(null, "introduce valor mayor que 0");
         } else {
-            producto.setStock(producto.getStock() - cantidad);
-            carrito.getCesta().add(producto);
-            carrito.getCantidad().add(cantidad);
+            if (cantidad > producto.getStock()) {
+                JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
+            } else {
+                producto.setStock(producto.getStock() - cantidad);
+                carrito.getCesta().add(producto);
+                carrito.getCantidad().add(cantidad);
+            }
         }
     }
 
@@ -41,7 +45,10 @@ public class Pruebas {
     }
 
     public static String consultarProductos(Carrito carrito) {
-        String carritoTexto = "Id --- descripcion-- cantidad-- precio--- precio c/iva ---total linea\n";
+        String carritoTexto="""
+                             "Id       cantidad       precio     precio c/iva     total linea      descripcion \n
+                             """;
+
         double total = 0;
         double totalIva = 0;
         String texto = "";
@@ -52,7 +59,11 @@ public class Pruebas {
             Productos nuevo = it.next();
             int cantidad = it2.next();
             double precioConIva = nuevo.getPrecio() * (1 + nuevo.getIva());
-            carritoTexto = carritoTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "-- " + cantidad + "--" + nuevo.getPrecio() + "--" + precioConIva + " = " + precioConIva * cantidad + "\n");
+            String cantidadString=(cantidad>=10)?String.valueOf(cantidad) :'0'+String.valueOf(cantidad);
+            String carritoAux="""
+                       %s                 %s                     %.2f             %.2f          %.2f          %s          
+                       """.formatted(nuevo.getID(),cantidadString, nuevo.getPrecio(), precioConIva, (precioConIva * cantidad), nuevo.getDescripcion() );
+            carritoTexto = carritoTexto.concat(carritoAux);
             total += nuevo.getPrecio() * cantidad;
             totalIva += precioConIva * cantidad;
         }

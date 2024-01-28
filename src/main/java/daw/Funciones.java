@@ -29,53 +29,57 @@ public class Funciones {
                     repetir = false;
 
                 case 1 -> {
+
                     ArrayList<Tarjeta> lista = InicializadorClases.tarjetas();
-                    Collections.sort(lista, (k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta()));
+                    if (carrito.getCesta().size() <= 0) {
+                        JOptionPane.showMessageDialog(null, "Carrito esta vacio");
+                    } else {
+                        Collections.sort(lista, (k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta()));
 
-                    Tarjeta x = new Tarjeta(metodosTpv.respuestaJopt("introduce numero tarjeta"), 001, LocalDate.now(), 0);
-                    int cvvProbar;
-                    LocalDate fechaCadProbar;
-                    int posicion = Collections.binarySearch(lista,
-                            x,
-                            ((k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta())));
+                        Tarjeta x = new Tarjeta(metodosTpv.respuestaJopt("introduce numero tarjeta"), 001, LocalDate.now(), 0);
+                        int cvvProbar;
+                        LocalDate fechaCadProbar;
+                        int posicion = Collections.binarySearch(lista,
+                                x,
+                                ((k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta())));
 
-                    if (posicion >= 0) {
-                        boolean cvvFecha = true;
+                        if (posicion >= 0) {
+                            boolean cvvFecha = true;
 
-                        do {
-                            cvvProbar = metodosTpv.respuestaJopt("introduce Cvv");
-                            fechaCadProbar = fechaValida();
+                            do {
+                                cvvProbar = metodosTpv.respuestaJopt("introduce Cvv");
+                                fechaCadProbar = fechaValida();
 
-                            if (cvvProbar < 0 || cvvProbar > 999) {
-                                JOptionPane.showMessageDialog(null, "cvv debe ser de tres cifras");
+                                if (cvvProbar < 0 || cvvProbar > 999) {
+                                    JOptionPane.showMessageDialog(null, "cvv debe ser de tres cifras");
+
+                                } else {
+                                    cvvFecha = false;
+                                }
+
+                            } while (cvvFecha);
+
+                            if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
+
+                                if (lista.get(posicion).getSaldo() >= Pruebas.sacarTotal(carrito)) {
+                                    lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - Pruebas.sacarTotal(carrito));
+                                    repetir = false;
+                                    JOptionPane.showMessageDialog(null, "Pago Correcto");
+                                    correcto = true;
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "saldo insuficiente");
+                                }
 
                             } else {
-                                cvvFecha = false;
-                            }
 
-                        } while (cvvFecha);
-
-                        if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
-
-                            if (lista.get(posicion).getSaldo() >= Pruebas.sacarTotal(carrito)) {
-                                lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - Pruebas.sacarTotal(carrito));
-                                repetir = false;
-                                JOptionPane.showMessageDialog(null, "Pago Correcto");
-                                correcto = true;
-                            } else {
-                                JOptionPane.showMessageDialog(null, "saldo insuficiente");
+                                JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
                             }
 
                         } else {
-                           
-                             JOptionPane.showMessageDialog(null, "error en cvv o  fecha");
+                            JOptionPane.showMessageDialog(null, "no existe la tarjeta");
                         }
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "no existe la tarjeta");
                     }
 
-//                        
                 }
             }
 
@@ -96,29 +100,28 @@ public class Funciones {
         } while (error);
         return fechaValida;
     }
-    
+
     //CREAR METODO CONTRASEÑA
-    
-    public static String password(){
-        char[] arrayChar= {'#','$','%','&','(',')','*','+',',','-','.',':',';','<','=','>','@'};
+    public static String password() {
+        char[] arrayChar = {'#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '=', '>', '@'};
         Random r = new Random();
-        char[] chars=new char[6];
-        chars[0]=(char)r.nextInt(97,123);
-        chars[1]=(char)r.nextInt(65,91);
-        chars[2]=(char) r.nextInt(48,58);
-        chars[3]=arrayChar[r.nextInt(arrayChar.length)];
-        chars[4]=(char)r.nextInt(33,123);
-        chars[5]=(char)r.nextInt(33,123);
+        char[] chars = new char[6];
+        chars[0] = (char) r.nextInt(97, 123);
+        chars[1] = (char) r.nextInt(65, 91);
+        chars[2] = (char) r.nextInt(48, 58);
+        chars[3] = arrayChar[r.nextInt(arrayChar.length)];
+        chars[4] = (char) r.nextInt(33, 123);
+        chars[5] = (char) r.nextInt(33, 123);
         char extra;
-        for(int i=0; i<chars.length;i++){
-            int posicion1=r.nextInt(chars.length);
-            int posicion2=r.nextInt(chars.length);
-            extra=chars[posicion1];
-            chars[posicion1]=chars[posicion2];
-            chars[posicion2]=extra;
+        for (int i = 0; i < chars.length; i++) {
+            int posicion1 = r.nextInt(chars.length);
+            int posicion2 = r.nextInt(chars.length);
+            extra = chars[posicion1];
+            chars[posicion1] = chars[posicion2];
+            chars[posicion2] = extra;
         }
-        String password=String.valueOf(chars);
-        
-          return password;     
+        String password = String.valueOf(chars);
+
+        return password;
     }
 }

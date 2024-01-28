@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
 //->  usuario, administrador,
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
-//	opcion-> pedir, consultar precio****** deja pagar pedidos a 0******
-//***************error de stock - quita el del stock al añadirlo al carrito pero no lo devuelve si el carrito se vacia
+//	opcion-> pedir, consultar precio****** 
+//
 //todo momento atras-inicio-añadir producto con cantidad.
 //--- ticket numero de ticket--> cambia al contador constructor******
 //
-//administrador-> contraseña************* -> menu cambios->cambio mismo id***************
-//administrador-> mostrar lista ventas de forma visible
-//pasarela de pago******* falta cvv y fecha 
+// -> menu cambios->cambio mismo id***************
+//administrador-> mostrar lista ventas de forma visible****************
+//*** cancelar contraseña amdinistador peta******
 //
 //clases
 //
@@ -100,10 +100,16 @@ public class metodosTpv {
     public static int respuestaJopt(String texto) {
         int respuesta = 0;
         boolean incorrecto = true;
+        String respuestaTexto;
         do {
             try {
-                respuesta = Integer.parseInt(JOptionPane.showInputDialog(texto));
+                respuestaTexto=JOptionPane.showInputDialog(texto);
+                if(respuestaTexto==null){
+                 incorrecto=false;   
+                }else{
+                respuesta = Integer.parseInt(respuestaTexto);
                 incorrecto = false;
+                }
             } catch (NumberFormatException nf) {
                 JOptionPane.showMessageDialog(null, "introduce valor valido");
 
