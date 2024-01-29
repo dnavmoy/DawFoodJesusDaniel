@@ -71,6 +71,8 @@ public class Pruebas {
 
         return carritoTexto;
     }
+    
+    
 
     public static double consultarProductos(ArrayProductos lista) {
         String listaTexto = "Id --- descripcion--- precio--- precio c/iva \n";

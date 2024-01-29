@@ -43,16 +43,9 @@ public class Administrador {
                 Pruebas.consultarProductos(lista);
                 break;
             case 5:
-               String mostrar="";
-                for(int i =0; i<tpv1.getVentas().size();i++){
-                    mostrar=mostrar.concat(tpv1.getId().get(i)+"---" + tpv1.getFecha());
-                    mostrar=mostrar.concat("\n"+tpv1.getVentas().get(i).toString());
-                    
-                    
-                    
-                    
-                }
+                String mostrar= Funciones.listaTickets(tpv1);
                 JOptionPane.showMessageDialog(null, mostrar);
+                
                 break;
             case 0:
                 atras = false;

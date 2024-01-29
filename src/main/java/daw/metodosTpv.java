@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 //
 // -> menu cambios->cambio mismo id***************
 //administrador-> mostrar lista ventas de forma visible****************
-//*** cancelar contraseña amdinistador peta******
+//
 //
 //clases
 //
@@ -39,7 +39,7 @@ import javax.swing.JOptionPane;
 //
 //tpv- constraseñasadministrador 
 public class metodosTpv {
-
+    
     public static void encenderTpv(TPV tpv) {
         
         boolean salir = true;
@@ -52,7 +52,6 @@ public class metodosTpv {
         //estructura menu
         do {
             System.out.println("la contraseña de aministrador es: " + tpv.getPassword());
-           
             
             String[] menuTpv = {"SALIR", "Encender Tpv"};
             int respTpv = respuestaBoton(menuTpv);
@@ -63,64 +62,66 @@ public class metodosTpv {
                     do {
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
-
+                        
                         switch (respuesta) {
-
+                            
                             case 1:
                                 Usuario.Usuario(lista, listaVentas);
                                 
                                 break;
                             //menu administrador
                             case 2:
-                                 String passwordIntroducida=respuestaTexto("introduce la contraseña");
-                                if(passwordIntroducida.equals(tpv.getPassword())){
-                                    Administrador.administrador(lista, listaVentas);
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "contraseña erronea");
+                                String passwordIntroducida = respuestaTexto("introduce la contraseña");
+                                if (passwordIntroducida == null) {
+                                    JOptionPane.showMessageDialog(null, "introduce contraseña");
+                                } else {
+                                    if (passwordIntroducida.equals(tpv.getPassword())) {
+                                        Administrador.administrador(lista, listaVentas);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "contraseña erronea");
+                                    }
                                 }
-                                
 //                                
                                 break;
                             //Opcion para salir
                             case 0:
                                 salir = false;
                         }
-
+                        
                     } while (salir);
                 case 0:
                     salir = false;
                     break;
             }
             while (salir);
-
+            
         } while (salir);
-
+        
     }
-
+    
     public static int respuestaJopt(String texto) {
         int respuesta = 0;
         boolean incorrecto = true;
         String respuestaTexto;
         do {
             try {
-                respuestaTexto=JOptionPane.showInputDialog(texto);
-                if(respuestaTexto==null){
-                 incorrecto=false;   
-                }else{
-                respuesta = Integer.parseInt(respuestaTexto);
-                incorrecto = false;
+                respuestaTexto = JOptionPane.showInputDialog(texto);
+                if (respuestaTexto == null) {
+                    incorrecto = false;                    
+                } else {
+                    respuesta = Integer.parseInt(respuestaTexto);
+                    incorrecto = false;
                 }
             } catch (NumberFormatException nf) {
                 JOptionPane.showMessageDialog(null, "introduce valor valido");
-
+                
             }
-        }while (incorrecto);
-            return respuesta;
-        }
+        } while (incorrecto);
+        return respuesta;
+    }
     
-
     public static int respuestaBoton(String[] menu) {
-
+        
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 "Seleccione opcion",
@@ -130,11 +131,12 @@ public class metodosTpv {
                 null,
                 menu,
                 "usuario");
-
+        
         return seleccion;
     }
-        public static int respuestaBoton(String[] menu,String opciones) {
 
+    public static int respuestaBoton(String[] menu, String opciones) {
+        
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 opciones,
@@ -144,15 +146,15 @@ public class metodosTpv {
                 null,
                 menu,
                 "usuario");
-
+        
         return seleccion;
     }
-
+    
     public static String respuestaTexto(String menu) {
         String respuesta = JOptionPane.showInputDialog(menu);
         return respuesta;
     }
-
+    
     public static double respuestaDouble(String menu) {
         double respuesta = 0;
         boolean incorrecto = true;
@@ -162,10 +164,10 @@ public class metodosTpv {
                 incorrecto = false;
             } catch (NumberFormatException nf) {
                 JOptionPane.showMessageDialog(null, "introduce valor valido");
-
+                
             }
-        }while (incorrecto);
-            return respuesta;
-        }
-
+        } while (incorrecto);
+        return respuesta;
     }
+    
+}

@@ -7,6 +7,7 @@ package daw;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -123,5 +124,28 @@ public class Funciones {
         String password = String.valueOf(chars);
 
         return password;
+    }
+    
+    
+    public static String listaTickets(ListaVentas ventas) {
+        String carritoTexto="";
+
+           
+        
+        Iterator<Integer> it = ventas.getId().iterator();
+        Iterator<Carrito> it2 = ventas.getVentas().iterator();
+
+        while (it.hasNext()) {
+            int id = it.next();
+            carritoTexto=carritoTexto.concat("\n Nº pedido "+ id + "\n" );
+            carritoTexto=carritoTexto.concat(Pruebas.consultarProductos(it2.next()));
+//            while (it2.hasNext()){
+//                Carrito carrito=it2.next();
+//                carritoTexto=carritoTexto.concat(Pruebas.consultarProductos(carrito));
+//            }
+        }
+        //carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
+
+        return carritoTexto;
     }
 }
