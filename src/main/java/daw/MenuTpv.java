@@ -3,9 +3,7 @@
  */
 package daw;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
+import Clases.ListaVentas;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +15,14 @@ import javax.swing.JOptionPane;
 //->  usuario, administrador,
 //usuario-> comida,bebida,postre
 //		--> tres subcategorias
-//	opcion-> pedir, consultar precio****** 
+//	opcion-> pedir, consultar precio
 //
 //todo momento atras-inicio-añadir producto con cantidad.
 //--- ticket numero de ticket--> cambia al contador constructor******
 //
 // -> menu cambios->cambio mismo id***************
-//administrador-> mostrar lista ventas de forma visible****************
-//
+//**** enum iva****
+//****admin cambio productos-tipo productosno cambia*** o añadir producto*****
 //
 //clases
 //
@@ -38,12 +36,12 @@ import javax.swing.JOptionPane;
 //clase ticket
 //
 //tpv- constraseñasadministrador 
-public class metodosTpv {
+public class MenuTpv {
     
     public static void encenderTpv(TPV tpv) {
         
         boolean salir = true;
-        boolean atras = true;
+        
 
         //inicializar productos
         ArrayProductos lista = tpv.getProductosTpv();
@@ -66,7 +64,7 @@ public class metodosTpv {
                         switch (respuesta) {
                             
                             case 1:
-                                Usuario.Usuario(lista, listaVentas);
+                                MenuUsuario.Usuario(lista, listaVentas);
                                 
                                 break;
                             //menu administrador
@@ -76,7 +74,7 @@ public class metodosTpv {
                                     JOptionPane.showMessageDialog(null, "introduce contraseña");
                                 } else {
                                     if (passwordIntroducida.equals(tpv.getPassword())) {
-                                        Administrador.administrador(lista, listaVentas);
+                                        MenuAdministrador.administrador(lista, listaVentas);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "contraseña erronea");
                                     }

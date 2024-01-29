@@ -2,16 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package daw;
+package Clases;
 
 /**
  *
- * @author jesus
+ * @author daniel
  */
-public enum Bebidas {
+public enum Postre {
     
-    ALCOHOLICA, CON_GAS,SIN_GAS;
-    
-    
-    
+    FRIO,CALIENTE,FRUTA
 }

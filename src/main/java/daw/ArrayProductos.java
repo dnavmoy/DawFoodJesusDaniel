@@ -4,6 +4,7 @@
  */
 package daw;
 
+import Clases.Productos;
 import java.util.ArrayList;
 import java.util.Objects;
 

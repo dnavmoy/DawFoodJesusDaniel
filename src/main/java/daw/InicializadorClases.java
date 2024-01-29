@@ -4,6 +4,11 @@
  */
 package daw;
 
+import Clases.Bebidas;
+import Clases.Comidas;
+import Clases.Postre;
+import Clases.Productos;
+import Clases.Tarjeta;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;

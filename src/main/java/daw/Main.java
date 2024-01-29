@@ -16,7 +16,7 @@ public class Main {
         
         ArrayList<TPV> listaTpvs = new ArrayList<>();
         listaTpvs.add(new TPV());
-        metodosTpv.encenderTpv(listaTpvs.get(0));
+        MenuTpv.encenderTpv(listaTpvs.get(0));
         
         
     }

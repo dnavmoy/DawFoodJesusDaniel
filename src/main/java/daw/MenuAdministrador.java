@@ -4,10 +4,13 @@
  */
 package daw;
 
-import static daw.metodosTpv.respuestaBoton;
-import static daw.metodosTpv.respuestaJopt;
-import static daw.metodosTpv.respuestaTexto;
-import static daw.metodosTpv.respuestaDouble;
+import Clases.Bebidas;
+import Clases.ListaVentas;
+import Clases.Productos;
+import static daw.MenuTpv.respuestaBoton;
+import static daw.MenuTpv.respuestaJopt;
+import static daw.MenuTpv.respuestaTexto;
+import static daw.MenuTpv.respuestaDouble;
 import javax.swing.JOptionPane;
 
 
@@ -15,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author daniel
  */
-public class Administrador {
+public class MenuAdministrador {
 
     public static void administrador(ArrayProductos lista,ListaVentas tpv1){
         boolean atras=true;
@@ -27,23 +30,21 @@ public class Administrador {
         switch (administrador) {
             case 1:
                 int idProducto=respuestaJopt("que producto vas a cambiar?");
-                Pruebas.cambiarProducto(lista, idProducto);
+                MetodosUsuario.cambiarProducto(lista, idProducto);
                 break;
             case 2:
                 
-                lista.getListaProductos().add(new Productos(Pruebas.ultimoId(lista)+1,
-                        respuestaTexto("introduce descripcion"), respuestaDouble("introduce precio"), 
-                        respuestaDouble("introduce iva"), respuestaJopt("introduce stock"), Bebidas.CON_GAS));
+                MetodosAdministrador.añadirProductos(lista);
                 break;
             case 3:
                 int idProd=respuestaJopt("que producto vas a borrar?");
-                Pruebas.borrarProducto(lista, idProd);
+                MetodosUsuario.borrarProducto(lista, idProd);
                 break;
             case 4:
-                Pruebas.consultarProductos(lista);
+                MetodosUsuario.consultarProductos(lista);
                 break;
             case 5:
-                String mostrar= Funciones.listaTickets(tpv1);
+                String mostrar= MetodosAdministrador.listaTickets(tpv1);
                 JOptionPane.showMessageDialog(null, mostrar);
                 
                 break;

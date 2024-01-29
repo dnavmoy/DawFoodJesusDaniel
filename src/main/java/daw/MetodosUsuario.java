@@ -4,8 +4,12 @@
  */
 package daw;
 
-import static daw.metodosTpv.respuestaJopt;
-import static daw.metodosTpv.respuestaTexto;
+import Clases.Carrito;
+import Clases.Bebidas;
+import Clases.ListaVentas;
+import Clases.Productos;
+import static daw.MenuTpv.respuestaJopt;
+import static daw.MenuTpv.respuestaTexto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -15,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author daniel
  */
-public class Pruebas {
+public class MetodosUsuario {
 
     public static void addProducto(ArrayList<Productos> lista, Carrito carrito, int cantidad, Productos producto) {
 
@@ -167,13 +171,13 @@ public class Pruebas {
     public static boolean pedir(ArrayList<Productos> lista, Carrito carrito, Productos tipo) {
         boolean atras = true;
 
-        int pedido = metodosTpv.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)), listaPrecios(crearListaArray(lista, tipo)));
+        int pedido = MenuTpv.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)), listaPrecios(crearListaArray(lista, tipo)));
 
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
-            Pruebas.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
+            MetodosUsuario.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
         } else {
-            Pruebas.consultarProductos(carrito);
+            MetodosUsuario.consultarProductos(carrito);
             atras = false;
 
         }

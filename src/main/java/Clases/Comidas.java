@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package daw;
+package Clases;
 
 /**
  *
  * @author daniel
  */
-public enum Postre {
+public enum Comidas {
     
-    FRIO,CALIENTE,FRUTA
+    ENTRANTES,PRIMEROS,SEGUNDOS;
 }

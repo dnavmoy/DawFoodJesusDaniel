@@ -4,6 +4,7 @@
  */
 package daw;
 
+import Clases.ListaVentas;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class TPV {
         this.productosTpv = InicializadorClases.incializadorProductos();
         this.direccion = "";
         this.hora = LocalDateTime.now();
-        this.password=Funciones.password();
+        this.password=MetodosAdministrador.password();
 
     }
 
