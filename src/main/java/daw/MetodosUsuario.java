@@ -23,13 +23,14 @@ public class MetodosUsuario {
 
     public static boolean pedir(ArrayList<Productos> lista, Carrito carrito, Productos tipo) {
         //devuelve atras para volver en el menu anterior si es correcto
-        boolean atras = true;
+        boolean atras = false;
         //muestra los productos segun el producto ejemplo 
         int pedido = MenuTpv.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)), listaPrecios(crearListaArray(lista, tipo)));
         //si persiona 0 (boton atras) volvemos en el menu  si es distinto de 0 pregunta y añade la cantidad de productos segun el metodo
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
             MetodosUsuario.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
+           atras=true;
 
         }
         return atras;

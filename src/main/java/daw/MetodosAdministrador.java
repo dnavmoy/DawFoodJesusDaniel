@@ -121,16 +121,24 @@ public class MetodosAdministrador {
 
     //CREAR METODO CONTRASEÑA
     public static String password() {
+        //creo array para las letras especiales
         char[] arrayChar = {'#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '=', '>', '@'};
         Random r = new Random();
+        //creo un array de char para ir guardando cada una de las reglas
         char[] chars = new char[6];
+        //una minuscula al azar
         chars[0] = (char) r.nextInt(97, 123);
+        //una mayuscula al azar
         chars[1] = (char) r.nextInt(65, 91);
+        //un numero
         chars[2] = (char) r.nextInt(48, 58);
+        //un caracter especial de los elegidos
         chars[3] = arrayChar[r.nextInt(arrayChar.length)];
+        //y luego dos caracteres cualquiera de todos los anteriores
         chars[4] = (char) r.nextInt(33, 123);
         chars[5] = (char) r.nextInt(33, 123);
         char extra;
+        //y mediante un for voy desordenandolos
         for (int i = 0; i < chars.length; i++) {
             int posicion1 = r.nextInt(chars.length);
             int posicion2 = r.nextInt(chars.length);
@@ -138,23 +146,25 @@ public class MetodosAdministrador {
             chars[posicion1] = chars[posicion2];
             chars[posicion2] = extra;
         }
+        //luego lo convierto en un string
         String password = String.valueOf(chars);
 
         return password;
     }
 
     public static String listaTickets(ListaVentas ventas) {
+        //creo el texto a mostrar vacio
         String carritoTexto = "";
 
         Iterator<Integer> it = ventas.getId().iterator();
         Iterator<Carrito> it2 = ventas.getVentas().iterator();
-
+        //mediante iteradores voy añadiendo el numero de pedido y luego la compra realizada
         while (it.hasNext()) {
             int id = it.next();
             carritoTexto = carritoTexto.concat("\n Nº pedido " + id + "\n");
             carritoTexto = carritoTexto.concat(MetodosUsuario.consultarProductos(it2.next()));
         }
-
+        //devuelvo el listado para mostrarlo
         return carritoTexto;
     }
 
@@ -166,7 +176,8 @@ public class MetodosAdministrador {
 
             switch (usuario) {
                 case 1:
-
+                    //he copiado el menu de usuario para este metodo, voy buscando el tipo de producto a añadir y luego pido los datos 
+                    //el id los busco segun el metodo, en el que busco el id del ulitmo producto y le sumo uno
                     String[] menuComida = {"ATRAS", "ENTRANTES", "PRIMEROS", "SEGUNDOS"};
                     int comida = respuestaBoton(menuComida);
                     switch (comida) {
@@ -266,11 +277,19 @@ public class MetodosAdministrador {
  
     public static void cambiarProducto(ArrayProductos lista, int id) {
         //borrar producto segun id->
-        Productos producto = lista.getListaProductos().get(id);
+        Productos producto = lista.getListaProductos().get(id-1);
         borrarProducto(lista, id);
         //añadir prodcutos segun
+        if(producto.getComida()==null){
+            if(producto.getBebida()==null){
+                lista.getListaProductos().add(new Productos(id, respuestaTexto("introduce descripcion"), respuestaDouble("introduce precio"), respuestaDouble("introduce Iva"), respuestaJopt("introduce stock"), producto.getPostre()));
+             }else{
+                lista.getListaProductos().add(new Productos(producto.getID(), respuestaTexto("introduce descripcion"), respuestaDouble("introduce precio"), respuestaDouble("introduce iva"), respuestaJopt("introduce stock"),producto.getBebida()));
+            }
+        }else{
+             lista.getListaProductos().add(new Productos(producto.getID(), respuestaTexto("introduce descripcion"), respuestaDouble("introduce precio"), respuestaDouble("introduce iva"), respuestaJopt("introduce stock"),producto.getComida()));
+        }
         
-        lista.getListaProductos().add(new Productos(id, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"),producto.getBebida()));
     }
 
     public static void borrarProducto(ArrayProductos lista, int id) {
@@ -292,6 +311,9 @@ public class MetodosAdministrador {
     }
 
     public static double sacarTotal(Carrito carrito) {
+        
+        //metodo para ver el total a pagar, comprueba el carrito y suma cada
+        //producto con el iva
         double total = 0;
         double totalIva = 0;
         Iterator<Productos> it = carrito.getCesta().iterator();

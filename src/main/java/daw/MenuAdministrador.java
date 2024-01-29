@@ -26,6 +26,7 @@ public class MenuAdministrador {
 
         switch (administrador) {
             case 1:
+                //opcion cambio producto, preguntar id del producto a cambiar
                 int idProducto=respuestaJopt("que producto vas a cambiar?");
                 MetodosAdministrador.cambiarProducto(lista, idProducto);
                 break;

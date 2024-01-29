@@ -37,11 +37,10 @@ import javax.swing.JOptionPane;
 //
 //tpv- constraseñasadministrador 
 public class MenuTpv {
-    
+
     public static void encenderTpv(TPV tpv) {
-        
+
         boolean salir = true;
-        
 
         //inicializar productos-> una lista de ventas y una lista de productos
         ArrayProductos lista = tpv.getProductosTpv();
@@ -51,10 +50,10 @@ public class MenuTpv {
         do {
             //solo para poder consultarla en el ejemplo
             System.out.println("la contraseña de aministrador es: " + tpv.getPassword());
-            
+
             String[] menuTpv = {"SALIR", "Encender Tpv"};
             int respTpv = respuestaBoton(menuTpv);
-            
+
             switch (respTpv) {
                 case 1:
                     //al "encender" tpv manda al menu inicial
@@ -62,12 +61,12 @@ public class MenuTpv {
                         //seleccionar usuario, administrador o salir del tpv-> llama a metodos de cada uno
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
-                        
+
                         switch (respuesta) {
-                            
+
                             case 1:
                                 MenuUsuario.Usuario(lista, listaVentas);
-                                
+
                                 break;
                             //menu administrador
                             case 2:
@@ -87,41 +86,39 @@ public class MenuTpv {
                             case 0:
                                 salir = false;
                         }
-                        
+
                     } while (salir);
                 case 0:
                     salir = false;
                     break;
             }
             while (salir);
-            
+
         } while (salir);
-        
+
     }
-    
+
     public static int respuestaJopt(String texto) {
         int respuesta = 0;
         boolean incorrecto = true;
         String respuestaTexto;
         do {
-            try {
-                respuestaTexto = JOptionPane.showInputDialog(texto);
-                if (respuestaTexto == null) {
-                    incorrecto = false;                    
-                } else {
+            respuestaTexto = JOptionPane.showInputDialog(texto);
+            try {               
+                if (respuestaTexto != null) {
                     respuesta = Integer.parseInt(respuestaTexto);
                     incorrecto = false;
-                }
+                } 
             } catch (NumberFormatException nf) {
                 JOptionPane.showMessageDialog(null, "introduce valor valido");
-                
+
             }
         } while (incorrecto);
         return respuesta;
     }
-    
+
     public static int respuestaBoton(String[] menu) {
-        
+
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 "Seleccione opcion",
@@ -131,12 +128,12 @@ public class MenuTpv {
                 null,
                 menu,
                 "usuario");
-        
+
         return seleccion;
     }
 
     public static int respuestaBoton(String[] menu, String opciones) {
-        
+
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 opciones,
@@ -146,28 +143,38 @@ public class MenuTpv {
                 null,
                 menu,
                 "usuario");
-        
+
         return seleccion;
     }
-    
+
     public static String respuestaTexto(String menu) {
-        String respuesta = JOptionPane.showInputDialog(menu);
+        boolean vacio=true;
+        String respuesta="";
+        do{
+        respuesta = JOptionPane.showInputDialog(menu);
+        if(respuesta!=null){
+            vacio=false;
+        }
+        }while(vacio);
         return respuesta;
     }
-    
+
     public static double respuestaDouble(String menu) {
         double respuesta = 0;
         boolean incorrecto = true;
         do {
-            try {
-                respuesta = Double.parseDouble(JOptionPane.showInputDialog(menu));
-                incorrecto = false;
-            } catch (NumberFormatException nf) {
-                JOptionPane.showMessageDialog(null, "introduce valor valido");
-                
+            String respuestaTexto = JOptionPane.showInputDialog(menu);
+            if (respuestaTexto != null) {
+                try {
+                    respuesta = Double.parseDouble(respuestaTexto);
+                    incorrecto = false;
+                } catch (NumberFormatException nf) {
+                    JOptionPane.showMessageDialog(null, "introduce valor valido");
+
+                }
             }
         } while (incorrecto);
         return respuesta;
     }
-    
+
 }
