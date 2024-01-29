@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 // -> menu cambios->cambio mismo id***************
 //**** enum iva****
 //****admin cambio productos-tipo productosno cambia*** o añadir producto*****
-//
+//**** termina que no añade bien los produtos al cambiarlo
 //clases
 //
 //array clientes-> con tarjetas guardadas
@@ -43,12 +43,13 @@ public class MenuTpv {
         boolean salir = true;
         
 
-        //inicializar productos
+        //inicializar productos-> una lista de ventas y una lista de productos
         ArrayProductos lista = tpv.getProductosTpv();
         ListaVentas listaVentas = tpv.getListaV();
 //       
         //estructura menu
         do {
+            //solo para poder consultarla en el ejemplo
             System.out.println("la contraseña de aministrador es: " + tpv.getPassword());
             
             String[] menuTpv = {"SALIR", "Encender Tpv"};
@@ -56,8 +57,9 @@ public class MenuTpv {
             
             switch (respTpv) {
                 case 1:
-                    
+                    //al "encender" tpv manda al menu inicial
                     do {
+                        //seleccionar usuario, administrador o salir del tpv-> llama a metodos de cada uno
                         String[] menu = {"SALIR", "USUARIO", "ADMINISTRADOR"};
                         int respuesta = respuestaBoton(menu);
                         

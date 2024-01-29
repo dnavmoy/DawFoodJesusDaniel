@@ -15,11 +15,9 @@ import static daw.MenuTpv.respuestaBoton;
 import static daw.MenuTpv.respuestaDouble;
 import static daw.MenuTpv.respuestaJopt;
 import static daw.MenuTpv.respuestaTexto;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -34,7 +32,7 @@ public class MetodosAdministrador {
 
         boolean repetir = true;
         boolean correcto = false;
-
+        //menu para hacer el pago- ahora no es necesario pero se puede añadir tarjetas en un futuro
         do {
             String[] menuPago = {"SALIR", "PAGAR"};
             int respuesta = MenuTpv.respuestaBoton(menuPago);
@@ -43,43 +41,47 @@ public class MetodosAdministrador {
                     repetir = false;
 
                 case 1 -> {
-
+                    //al iniciar el pago añadimos la lista de tarjetas para poder comprobarlas
                     ArrayList<Tarjeta> lista = InicializadorClases.tarjetas();
+                    //si el carrito esta vacio no llegamos a intentar el pago
                     if (carrito.getCesta().size() <= 0) {
                         JOptionPane.showMessageDialog(null, "Carrito esta vacio");
                     } else {
+                        //ordenar las tarjetas para poder buscarlas
                         Collections.sort(lista, (k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta()));
-
+                        //tarjeta ejemplo para buscar 
                         Tarjeta x = new Tarjeta(MenuTpv.respuestaJopt("introduce numero tarjeta"), 001, LocalDate.now(), 0);
                         int cvvProbar;
                         LocalDate fechaCadProbar;
                         int posicion = Collections.binarySearch(lista,
                                 x,
                                 ((k1, k2) -> Integer.compare(k1.getNumTarjeta(), k2.getNumTarjeta())));
-
+                        //si encuentra numero de tarjeta 
                         if (posicion >= 0) {
                             boolean cvvFecha = true;
-
+                            //si la encuentra pregunta cvv y fecha vencimiento
                             do {
                                 cvvProbar = MenuTpv.respuestaJopt("introduce Cvv");
                                 fechaCadProbar = fechaValida();
 
+                                //si es disitno a tres digitos da error
                                 if (cvvProbar < 0 || cvvProbar > 999) {
                                     JOptionPane.showMessageDialog(null, "cvv debe ser de tres cifras");
 
                                 } else {
                                     cvvFecha = false;
                                 }
-
+                                //repite mientras no tenga formato correcto
                             } while (cvvFecha);
-
+                            //luego probamos si el cvv y la fecha es igual a la de la tarjeta
                             if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
-
-                                if (lista.get(posicion).getSaldo() >= MetodosUsuario.sacarTotal(carrito)) {
-                                    lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - MetodosUsuario.sacarTotal(carrito));
+                                //comprobamos el saldo de la tarjeta si es suficiente segun el carrito mandado
+                                if (lista.get(posicion).getSaldo() >= sacarTotal(carrito)) {
+                                    lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - sacarTotal(carrito));
                                     repetir = false;
                                     JOptionPane.showMessageDialog(null, "Pago Correcto");
                                     correcto = true;
+                                    //cambiamos correcto a true para que el pago haya sido correcto
                                 } else {
                                     JOptionPane.showMessageDialog(null, "saldo insuficiente");
                                 }
@@ -90,11 +92,13 @@ public class MetodosAdministrador {
                             }
 
                         } else {
+                            //si no encuentra tarjeta muestra mensaje error
                             JOptionPane.showMessageDialog(null, "no existe la tarjeta");
                         }
                     }
 
                 }
+
             }
 
         } while (repetir);
@@ -257,6 +261,47 @@ public class MetodosAdministrador {
                     break;
             }
         } while (atras);
+    }
+
+ 
+    public static void cambiarProducto(ArrayProductos lista, int id) {
+        //borrar producto segun id->
+        Productos producto = lista.getListaProductos().get(id);
+        borrarProducto(lista, id);
+        //añadir prodcutos segun
+        
+        lista.getListaProductos().add(new Productos(id, respuestaTexto("introduce descripcion"), respuestaJopt("introduce precio"), respuestaJopt("introduce iva"), respuestaJopt("introduce stock"),producto.getBebida()));
+    }
+
+    public static void borrarProducto(ArrayProductos lista, int id) {
+        Collections.sort(lista.getListaProductos(), (k1, k2) -> Integer.compare(k1.getID(), k2.getID()));
+        Productos x = new Productos(id, "", 0, 0, 0, Bebidas.CON_GAS);
+        int posicion = Collections.binarySearch(lista.getListaProductos(), x, (k1, k2) -> k1.getID() - k2.getID());
+        lista.getListaProductos().remove(posicion);
+    }
+
+    public static void consultarProductos(ArrayProductos lista) {
+        //crear un String  de todos los productos
+        String listaTexto = "Id --- descripcion--- precio--- precio c/iva \n";
+        Iterator<Productos> it = lista.getListaProductos().iterator();
+        while (it.hasNext()) {
+            Productos nuevo = it.next();
+            listaTexto = listaTexto.concat(nuevo.getID() + "--" + nuevo.getDescripcion() + "--" + nuevo.getPrecio() + "--" + (1 + nuevo.getIva()) * nuevo.getPrecio() + "\n");
+        }
+        JOptionPane.showMessageDialog(null, listaTexto);
+    }
+
+    public static double sacarTotal(Carrito carrito) {
+        double total = 0;
+        double totalIva = 0;
+        Iterator<Productos> it = carrito.getCesta().iterator();
+        Iterator<Integer> it2 = carrito.getCantidad().iterator();
+        while (it.hasNext()) {
+            Productos nuevo = it.next();
+            int cantidad = it2.next();
+            totalIva += ((1 + nuevo.getIva()) * nuevo.getPrecio() * cantidad);
+        }
+        return totalIva;
     }
 
 }

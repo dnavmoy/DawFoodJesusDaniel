@@ -12,7 +12,6 @@ import Clases.Postre;
 import Clases.Productos;
 import static daw.MenuTpv.respuestaBoton;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -24,13 +23,14 @@ public class MenuUsuario {
 
     public static boolean Usuario(ArrayProductos lista, ListaVentas ticketVenta) {
         boolean atras = true;
-         Carrito carrito=new Carrito();
-        
+        //creo un carrito cada vez que un usuario entre, al entrar otro usuario sustituye el carrito
+        Carrito carrito = new Carrito();
 
+        //permanece en menu usuario hasta que atras sea true 
         do {
             String[] menuUsuario = {"ATRAS", "COMIDA", "BEBIDA", "POSTRE", "VER CARRITO", "PAGAR"};
             int usuario = respuestaBoton(menuUsuario);
-            
+
             switch (usuario) {
                 case 1:
 
@@ -41,8 +41,9 @@ public class MenuUsuario {
                             case 1:
 
                                 do {
-
+                                    //creo producto ejemplo para filtrar la lista de productos solo por ese tipo-> en este caso los entrantes
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
+                                    //muestra solo esos productos y deja pedirlos
                                     atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
 
                                 } while (atras);
@@ -64,6 +65,7 @@ public class MenuUsuario {
                                 break;
 
                             case 0:
+                                //boton atras hace que se salga del bucle de comida y lo vuelvo aponer en true para que permanezca en menu usuario
                                 atras = false;
 
                         }
@@ -72,7 +74,7 @@ public class MenuUsuario {
                     atras = true;
                     break;
                 case 2:
-
+                    //idem con comidas
                     do {
                         String[] bebidaarray = {"ATRAS", "ALCOHOLICA", "Con Gas", "Sin Gas"};
                         int bebida = respuestaBoton(bebidaarray);
@@ -149,24 +151,26 @@ public class MenuUsuario {
                     atras = true;
                     break;
                 case 4:
+                    //llama a metodo consultar productos para enseñar el carrito
                     String carritoTexto = MetodosUsuario.consultarProductos(carrito);
                     JOptionPane.showMessageDialog(null, carritoTexto);
-
                     break;
                 case 5:
+                    //llama a metodo pasarelaPago para hacer el pago, devuelve true si es correcto el pago
+                    
                     boolean pagado = MetodosAdministrador.pasarelaPago(carrito);
 
                     if (pagado) {
-                        
+                        //si el pago es correcto añadimos los datos del carrito a la lista de ventas
                         ticketVenta.getVentas().add(carrito);
                         ticketVenta.getFecha().add(Date.from(Instant.now()));
-                        ticketVenta.getId().add(MetodosUsuario.ultimoTicket(ticketVenta)+1);
+                        //metodo para calcular cual ha sido el ultimo ticket 
+                        ticketVenta.getId().add(MetodosUsuario.ultimoTicket(ticketVenta) + 1);
+                        //y mostramos el ticket-> un carrito con numero de pedido
                         String Ticket = MetodosUsuario.consultarProductos(carrito);
-                        String mostrarTicket= "NUMERO DE PEDIDO : "+ MetodosUsuario.ultimoTicket(ticketVenta)+"\n";
-                        mostrarTicket=mostrarTicket.concat(Ticket);
+                        String mostrarTicket = "NUMERO DE PEDIDO : " + MetodosUsuario.ultimoTicket(ticketVenta) + "\n";
+                        mostrarTicket = mostrarTicket.concat(Ticket);
                         JOptionPane.showMessageDialog(null, mostrarTicket);
-                        
-                       
 
                     }
                     atras = false;
@@ -174,11 +178,13 @@ public class MenuUsuario {
 
                 case 0:
                     atras = false;
+                    
+                    //si salimos del usuario sin pagar hay que devolver los productos al stock si no se eliminarar erroneamente
                     MetodosUsuario.devProductoStock(lista, carrito);
                     break;
             }
         } while (atras);
-        atras=true;
+        atras = true;
         return atras;
     }
 
