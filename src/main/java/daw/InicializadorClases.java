@@ -22,12 +22,13 @@ public class InicializadorClases {
  public static ArrayProductos incializadorProductos(){
      ArrayProductos lista=new ArrayProductos();
         
-        Productos ensalada = new Productos(1, "ensalada", 1, 0.21, 10, Comidas.ENTRANTES);
-        Productos gazpacho = new Productos(2, "gazpacho", 15, 0.21, 10, Comidas.ENTRANTES);
-        Productos agua = new Productos(3, "agua", 1.5, 0.21, 10, Bebidas.SIN_GAS);
+        Productos ensalada = new Productos(1, "ensalada", 1, 0.1, 10, Comidas.ENTRANTES);
+        Productos gazpacho = new Productos(2, "gazpacho", 15, 0.1, 10, Comidas.ENTRANTES);
+        Productos agua = new Productos(3, "agua", 1.5, 0.1, 10, Bebidas.SIN_GAS);
         Productos carne = new Productos(4, "filete", 20, 0.21, 10, Comidas.PRIMEROS);
         Productos cerveza = new Productos(5, "Cerveza", 3.2, 0.21, 10, Bebidas.ALCOHOLICA);
-        Productos manzana = new Productos(6, "Manzana", 0.75, 0.21, 7, Postre.FRUTA);
+        Productos manzana = new Productos(6, "Manzana", 0.75, 0.10, 7, Postre.FRUTA);
+        Productos tarta = new Productos(7, "tarta", 4.5, 0.21, 10, Postre.FRIO);
         //ArrayList<Productos> lista = new ArrayList();
 
         lista.getListaProductos().add(ensalada);
@@ -36,6 +37,7 @@ public class InicializadorClases {
         lista.getListaProductos().add(carne);
         lista.getListaProductos().add(cerveza);
         lista.getListaProductos().add(manzana);
+        lista.getListaProductos().add(tarta);
         
         return lista;
      
