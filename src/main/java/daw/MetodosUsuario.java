@@ -37,17 +37,21 @@ public class MetodosUsuario {
     }
 
     public static void addProducto(ArrayList<Productos> lista, Carrito carrito, int cantidad, Productos producto) {
-
+        //lista de productos no usada*****************
         //si la cantidad es superior a 0 añade el producto en el carrito y la cantidad (si hay stock suficiente) y reduce el stock
         if (cantidad <= 0) {
             JOptionPane.showMessageDialog(null, "introduce valor mayor que 0");
         } else {
             if (cantidad > producto.getStock()) {
                 JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
+                
             } else {
+                
                 producto.setStock(producto.getStock() - cantidad);
-                carrito.getCesta().add(producto);
-                carrito.getCantidad().add(cantidad);
+                
+                  carrito.getCarrito().put(id, cantidad);
+//                carrito.getCesta().add(producto);
+//                carrito.getCantidad().add(cantidad);
             }
         }
     }
