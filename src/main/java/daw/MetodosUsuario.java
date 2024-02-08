@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -50,9 +52,7 @@ public class MetodosUsuario {
                 producto.setStock(producto.getStock() - cantidad);
                 int id = producto.getID();
                 if(carrito.getCarrito().containsKey(id)){
-                    //carrito.getCarrito().get(id).
-                    
-                    //--- no puedo reemplazar la cantidad no consigo coger la cantidad de un producto del carrito
+                   
                     carrito.getCarrito().replace(id, cantidad+carrito.getCarrito().get(id));
                 }else
                   carrito.getCarrito().put(id, cantidad);
@@ -62,7 +62,8 @@ public class MetodosUsuario {
 
     public static void devProductoStock(ArrayProductos lista, Carrito carrito) {
         //recorrer el carrito y volver a añadir al stock la lista de productos
-        Iterator<Productos> itProductos = carrito.getCesta().iterator();
+        
+        //Iterator<Productos> itProductos = carrito.getCesta().iterator();
         Iterator<Integer> itCantidad = carrito.getCantidad().iterator();
         while (itProductos.hasNext()) {
 
