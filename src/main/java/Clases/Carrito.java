@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 public class Carrito {
  
+        //id producto- Cantidad
     private Map<Integer,Integer> carrito;
 
     

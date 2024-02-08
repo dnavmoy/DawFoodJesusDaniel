@@ -48,10 +48,14 @@ public class MetodosUsuario {
             } else {
                 
                 producto.setStock(producto.getStock() - cantidad);
-                
+                int id = producto.getID();
+                if(carrito.getCarrito().containsKey(id)){
+                    //carrito.getCarrito().get(id).
+                    
+                    //--- no puedo reemplazar la cantidad no consigo coger la cantidad de un producto del carrito
+                    carrito.getCarrito().replace(id, cantidad+carrito.getCarrito().get(id));
+                }else
                   carrito.getCarrito().put(id, cantidad);
-//                carrito.getCesta().add(producto);
-//                carrito.getCantidad().add(cantidad);
             }
         }
     }
