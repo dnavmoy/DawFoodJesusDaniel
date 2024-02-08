@@ -42,7 +42,7 @@ public class MenuAdministrador {
                 MetodosAdministrador.consultarProductos(lista);
                 break;
             case 5:
-                String mostrar= MetodosAdministrador.listaTickets(tpv1);
+                String mostrar= MetodosAdministrador.listaTickets(lista,tpv1);
                 JOptionPane.showMessageDialog(null, mostrar);
                 
                 break;

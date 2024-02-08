@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -28,7 +29,7 @@ import javax.swing.JOptionPane;
  */
 public class MetodosAdministrador {
 
-    public static boolean pasarelaPago(Carrito carrito) {
+    public static boolean pasarelaPago(ArrayProductos listaProductos,Carrito carrito) {
 
         boolean repetir = true;
         boolean correcto = false;
@@ -44,7 +45,7 @@ public class MetodosAdministrador {
                     //al iniciar el pago añadimos la lista de tarjetas para poder comprobarlas
                     ArrayList<Tarjeta> lista = InicializadorClases.tarjetas();
                     //si el carrito esta vacio no llegamos a intentar el pago
-                    if (carrito.getCesta().size() <= 0) {
+                    if (carrito.getCarrito().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Carrito esta vacio");
                     } else {
                         //ordenar las tarjetas para poder buscarlas
@@ -76,8 +77,8 @@ public class MetodosAdministrador {
                             //luego probamos si el cvv y la fecha es igual a la de la tarjeta
                             if (lista.get(posicion).getCvv() == cvvProbar && lista.get(posicion).getFechaVencimiento().equals(fechaCadProbar)) {
                                 //comprobamos el saldo de la tarjeta si es suficiente segun el carrito mandado
-                                if (lista.get(posicion).getSaldo() >= sacarTotal(carrito)) {
-                                    lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - sacarTotal(carrito));
+                                if (lista.get(posicion).getSaldo() >= sacarTotal(listaProductos,carrito)) {
+                                    lista.get(posicion).setSaldo(lista.get(posicion).getSaldo() - sacarTotal(listaProductos,carrito));
                                     repetir = false;
                                     JOptionPane.showMessageDialog(null, "Pago Correcto");
                                     correcto = true;
@@ -152,7 +153,7 @@ public class MetodosAdministrador {
         return password;
     }
 
-    public static String listaTickets(ListaVentas ventas) {
+    public static String listaTickets(ArrayProductos lista,ListaVentas ventas) {
         //creo el texto a mostrar vacio
         String carritoTexto = "";
 
@@ -162,7 +163,7 @@ public class MetodosAdministrador {
         while (it.hasNext()) {
             int id = it.next();
             carritoTexto = carritoTexto.concat("\n Nº pedido " + id + "\n");
-            carritoTexto = carritoTexto.concat(MetodosUsuario.consultarProductos(it2.next()));
+            carritoTexto = carritoTexto.concat(MetodosUsuario.consultarProductos(lista,it2.next()));
         }
         //devuelvo el listado para mostrarlo
         return carritoTexto;
@@ -310,20 +311,22 @@ public class MetodosAdministrador {
         JOptionPane.showMessageDialog(null, listaTexto);
     }
 
-    public static double sacarTotal(Carrito carrito) {
+    public static double sacarTotal(ArrayProductos lista,Carrito carrito) {
         
         //metodo para ver el total a pagar, comprueba el carrito y suma cada
         //producto con el iva
-        double total = 0;
-        double totalIva = 0;
-        Iterator<Productos> it = carrito.getCesta().iterator();
-        Iterator<Integer> it2 = carrito.getCantidad().iterator();
-        while (it.hasNext()) {
-            Productos nuevo = it.next();
-            int cantidad = it2.next();
-            totalIva += ((1 + nuevo.getIva()) * nuevo.getPrecio() * cantidad);
+        
+        
+        double total=0;
+        
+        
+       Map<Integer,Integer> valores= carrito.getCarrito();
+
+        for (Map.Entry<Integer, Integer> valor : valores.entrySet()) {
+            total+= (lista.getListaProductos().get(valor.getKey()).getPrecio()+(1+lista.getListaProductos().get(valor.getKey()).getIva()))*valor.getValue();
         }
-        return totalIva;
+
+        return total;
     }
 
 }

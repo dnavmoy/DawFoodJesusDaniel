@@ -5,17 +5,14 @@
 package daw;
 
 import Clases.Carrito;
-import Clases.Bebidas;
 import Clases.ListaVentas;
 import Clases.Productos;
 import static daw.MenuTpv.respuestaJopt;
-import static daw.MenuTpv.respuestaTexto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import javax.swing.JOptionPane;
-import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +29,7 @@ public class MetodosUsuario {
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
             MetodosUsuario.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
-           atras=true;
+            atras = true;
 
         }
         return atras;
@@ -46,35 +43,33 @@ public class MetodosUsuario {
         } else {
             if (cantidad > producto.getStock()) {
                 JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
-                
+
             } else {
-                
+
                 producto.setStock(producto.getStock() - cantidad);
                 int id = producto.getID();
-                if(carrito.getCarrito().containsKey(id)){
-                   
-                    carrito.getCarrito().replace(id, cantidad+carrito.getCarrito().get(id));
-                }else
-                  carrito.getCarrito().put(id, cantidad);
+                if (carrito.getCarrito().containsKey(id)) {
+
+                    carrito.getCarrito().replace(id, cantidad + carrito.getCarrito().get(id));
+                } else {
+                    carrito.getCarrito().put(id, cantidad);
+                }
             }
         }
     }
 
     public static void devProductoStock(ArrayProductos lista, Carrito carrito) {
         //recorrer el carrito y volver a añadir al stock la lista de productos
-        
-        //Iterator<Productos> itProductos = carrito.getCesta().iterator();
-        Iterator<Integer> itCantidad = carrito.getCantidad().iterator();
-        while (itProductos.hasNext()) {
 
-            Productos nuevo = itProductos.next();
-            int cantidad = itCantidad.next();
-            nuevo.setStock(nuevo.getStock() + cantidad);
-
+        //carrito.getCarrito().forEach( (k,v) ->lista.getListaProductos().get(k).setStock(lista.getListaProductos().get(k).getStock()+v));
+        Map<Integer, Integer> valores = carrito.getCarrito();
+        for (Map.Entry<Integer, Integer> valor : valores.entrySet()) {
+            int nuevoStock=lista.getListaProductos().get(valor.getKey()).getStock() + valor.getValue();
+            lista.getListaProductos().get(valor.getKey()).setStock(nuevoStock);
         }
     }
 
-    public static String consultarProductos(Carrito carrito) {
+    public static String consultarProductos(ArrayProductos lista, Carrito carrito) {
 
         //muestra los productos del carrito iterando segun las cantidades y productos
         //he intentado hacer con tablas pero no parece facil y no me da ya tiempo
@@ -82,26 +77,17 @@ public class MetodosUsuario {
                              "Id       cantidad       precio     precio c/iva     total linea      descripcion \n
                              """;
 
-        double total = 0;
-        double totalIva = 0;
-        String texto = "";
-        Iterator<Productos> it = carrito.getCesta().iterator();
-        Iterator<Integer> it2 = carrito.getCantidad().iterator();
-
-        while (it.hasNext()) {
-            Productos nuevo = it.next();
-            int cantidad = it2.next();
-            double precioConIva = nuevo.getPrecio() * (1 + nuevo.getIva());
-            String cantidadString = (cantidad >= 10) ? String.valueOf(cantidad) : '0' + String.valueOf(cantidad);
-            String carritoAux = """
+        Map<Integer, Integer> valores = carrito.getCarrito();
+        for (Map.Entry<Integer, Integer> valor : valores.entrySet()) {
+            carritoTexto = carritoTexto.concat("""
                        %s                 %s                     %.2f             %.2f          %.2f          %s          
-                       """.formatted(nuevo.getID(), cantidadString, nuevo.getPrecio(), precioConIva, (precioConIva * cantidad), nuevo.getDescripcion());
-            carritoTexto = carritoTexto.concat(carritoAux);
-            total += nuevo.getPrecio() * cantidad;
-            totalIva += precioConIva * cantidad;
+                       """.formatted(valor.getKey(), valor.getValue(), lista.getListaProductos().get(valor.getKey()).getPrecio(),
+                    lista.getListaProductos().get(valor.getKey()).getPrecio() * (1 + lista.getListaProductos().get(valor.getKey()).getIva()),
+                    lista.getListaProductos().get(valor.getKey()).getPrecio() * (1 + lista.getListaProductos().get(valor.getKey()).getIva()) * valor.getValue(),
+                    lista.getListaProductos().get(valor.getKey()).getDescripcion()));
         }
-        carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
 
+        //carritoTexto = carritoTexto.concat("total pedido: " + total + "\n total con iva " + totalIva);
         return carritoTexto;
     }
 

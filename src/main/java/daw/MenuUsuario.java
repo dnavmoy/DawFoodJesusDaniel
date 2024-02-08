@@ -152,13 +152,13 @@ public class MenuUsuario {
                     break;
                 case 4:
                     //llama a metodo consultar productos para enseñar el carrito
-                    String carritoTexto = MetodosUsuario.consultarProductos(carrito);
+                    String carritoTexto = MetodosUsuario.consultarProductos(lista,carrito);
                     JOptionPane.showMessageDialog(null, carritoTexto);
                     break;
                 case 5:
                     //llama a metodo pasarelaPago para hacer el pago, devuelve true si es correcto el pago
                     
-                    boolean pagado = MetodosAdministrador.pasarelaPago(carrito);
+                    boolean pagado = MetodosAdministrador.pasarelaPago(lista,carrito);
 
                     if (pagado) {
                         //si el pago es correcto añadimos los datos del carrito a la lista de ventas
@@ -167,7 +167,7 @@ public class MenuUsuario {
                         //metodo para calcular cual ha sido el ultimo ticket 
                         ticketVenta.getId().add(MetodosUsuario.ultimoTicket(ticketVenta) + 1);
                         //y mostramos el ticket-> un carrito con numero de pedido
-                        String Ticket = MetodosUsuario.consultarProductos(carrito);
+                        String Ticket = MetodosUsuario.consultarProductos(lista,carrito);
                         String mostrarTicket = "NUMERO DE PEDIDO : " + MetodosUsuario.ultimoTicket(ticketVenta) + "\n";
                         mostrarTicket = mostrarTicket.concat(Ticket);
                         JOptionPane.showMessageDialog(null, mostrarTicket);
