@@ -44,7 +44,7 @@ public class MenuUsuario {
                                     //creo producto ejemplo para filtrar la lista de productos solo por ese tipo-> en este caso los entrantes
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.ENTRANTES);
                                     //muestra solo esos productos y deja pedirlos
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -53,14 +53,14 @@ public class MenuUsuario {
                             case 2:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.PRIMEROS);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
                                 break;
                             case 3:
                                 Productos objeto = new Productos(-1, "", 0, 0, 0, Comidas.SEGUNDOS);
-                                atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 break;
 
@@ -83,7 +83,7 @@ public class MenuUsuario {
                             case 1:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.ALCOHOLICA);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -91,7 +91,7 @@ public class MenuUsuario {
                             case 2:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.CON_GAS);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -99,7 +99,7 @@ public class MenuUsuario {
                             case 3:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Bebidas.SIN_GAS);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -121,7 +121,7 @@ public class MenuUsuario {
                             case 1:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.CALIENTE);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -129,7 +129,7 @@ public class MenuUsuario {
                             case 2:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRIO);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;
@@ -137,7 +137,7 @@ public class MenuUsuario {
                             case 3:
                                 do {
                                     Productos objeto = new Productos(-1, "", 0, 0, 0, Postre.FRUTA);
-                                    atras = MetodosUsuario.pedir(lista.getListaProductos(), carrito, objeto);
+                                    atras = MetodosUsuario.pedir(lista, carrito, objeto);
 
                                 } while (atras);
                                 atras = true;

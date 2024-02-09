@@ -20,22 +20,22 @@ import javax.swing.JOptionPane;
  */
 public class MetodosUsuario {
 
-    public static boolean pedir(ArrayList<Productos> lista, Carrito carrito, Productos tipo) {
+    public static boolean pedir(ArrayProductos lista, Carrito carrito, Productos tipo) {
         //devuelve atras para volver en el menu anterior si es correcto
         boolean atras = false;
         //muestra los productos segun el producto ejemplo 
-        int pedido = MenuTpv.respuestaBoton(objetoMenu(crearListaArray(lista, tipo)), listaPrecios(crearListaArray(lista, tipo)));
+        int pedido = MenuTpv.respuestaBoton(objetoMenu(crearListaArray(lista.getListaProductos(), tipo)), listaPrecios(crearListaArray(lista.getListaProductos(), tipo)));
         //si persiona 0 (boton atras) volvemos en el menu  si es distinto de 0 pregunta y añade la cantidad de productos segun el metodo
         if (pedido != 0) {
             int cantidad = respuestaJopt("cuanto añades");
-            MetodosUsuario.addProducto(lista, carrito, cantidad, crearListaArray(lista, tipo).get(pedido - 1));
+            MetodosUsuario.addProducto(lista, carrito, cantidad, crearListaArray(lista.getListaProductos(), tipo).get(pedido - 1));
             atras = true;
 
         }
         return atras;
     }
 
-    public static void addProducto(ArrayList<Productos> lista, Carrito carrito, int cantidad, Productos producto) {
+    public static void addProducto(ArrayProductos lista, Carrito carrito, int cantidad, Productos producto) {
         //lista de productos no usada*****************
         //si la cantidad es superior a 0 añade el producto en el carrito y la cantidad (si hay stock suficiente) y reduce el stock
         if (cantidad <= 0) {
@@ -45,9 +45,9 @@ public class MetodosUsuario {
                 JOptionPane.showMessageDialog(null, "cantidad superior al stock, ingrese cantidad inferior al stock actual : " + producto.getStock());
 
             } else {
-
-                producto.setStock(producto.getStock() - cantidad);
                 int id = producto.getID();
+                lista.getListaProductos().get(id).setStock(lista.getListaProductos().get(id).getStock()-cantidad);
+                                                
                 if (carrito.getCarrito().containsKey(id)) {
 
                     carrito.getCarrito().replace(id, cantidad + carrito.getCarrito().get(id));
@@ -61,11 +61,16 @@ public class MetodosUsuario {
     public static void devProductoStock(ArrayProductos lista, Carrito carrito) {
         //recorrer el carrito y volver a añadir al stock la lista de productos
 
-        //carrito.getCarrito().forEach( (k,v) ->lista.getListaProductos().get(k).setStock(lista.getListaProductos().get(k).getStock()+v));
+        
         Map<Integer, Integer> valores = carrito.getCarrito();
         for (Map.Entry<Integer, Integer> valor : valores.entrySet()) {
-            int nuevoStock=lista.getListaProductos().get(valor.getKey()).getStock() + valor.getValue();
+            
+            int nuevoStock=(lista.getListaProductos().get(valor.getKey()).getStock() + valor.getValue());
+           
+            
             lista.getListaProductos().get(valor.getKey()).setStock(nuevoStock);
+            
+            
         }
     }
 
