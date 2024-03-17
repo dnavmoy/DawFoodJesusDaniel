@@ -11,13 +11,51 @@ import Clases.Productos;
 import Clases.Tarjeta;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
  *
  * @author daniel
  */
 public class InicializadorClases {
+    
+    public static List<String> leerFichero(String nombreFichero) {
+        //Creamos una lista para almacenar la que nos devolvera ReadAllLines
+        List<String> lista = new ArrayList<>();
+        //Importante usar un try para controlar una posible excepcion
+        try {
+            lista = Files.readAllLines(Paths.get(nombreFichero));
+        } catch (IOException ex) {
+            System.out.println("Error accediendo a " + nombreFichero);
+        }
+        lista.remove(0);//Eliminamos la primera porque no tiene el formato
+        return lista;
+    
+    }
+    
+    
+    public static ArrayProductos extraerProductos(List<String> lista) {
+        //Creouna lista que devolvere
+        //ArrayList<Productos> listaDevolver = new ArrayList();
+        ArrayProductos listaDevolver= new ArrayProductos();
+        for (int i = 0; i < lista.size(); i++) {
+            //Separamos por , para obtener los datos de cada vehiculo
+            String[] array = lista.get(i).split(",");//Corta por cada coma
+            //Creamos un objeto producto y metemos los datos en cada campo
+            Productos temporal = new Productos(Integer.parseInt(array[0]),array[1], Double.parseDouble(array[2]), Double.parseDouble(array[3]), Integer.parseInt(array[4]), Bebidas.CON_GAS);
+            listaDevolver.getListaProductos().add(temporal);
+            System.out.println(temporal);
+            
+
+        }
+
+        return listaDevolver;
+    }
+    
+    
     
  public static ArrayProductos incializadorProductos(){
      ArrayProductos lista=new ArrayProductos();
