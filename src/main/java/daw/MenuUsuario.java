@@ -170,6 +170,8 @@ public class MenuUsuario {
                         String Ticket = MetodosUsuario.consultarProductos(lista,carrito);
                         String mostrarTicket = "NUMERO DE PEDIDO : " + MetodosUsuario.ultimoTicket(ticketVenta) + "\n";
                         mostrarTicket = mostrarTicket.concat(Ticket);
+                        //añadir a archivo ventas
+                        MetodosAdministrador.textoVentas(Ticket);
                         JOptionPane.showMessageDialog(null, mostrarTicket);
 
                     }

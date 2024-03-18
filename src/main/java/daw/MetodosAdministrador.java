@@ -15,6 +15,13 @@ import static daw.MenuTpv.respuestaBoton;
 import static daw.MenuTpv.respuestaDouble;
 import static daw.MenuTpv.respuestaJopt;
 import static daw.MenuTpv.respuestaTexto;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,6 +89,8 @@ public class MetodosAdministrador {
                                     repetir = false;
                                     JOptionPane.showMessageDialog(null, "Pago Correcto");
                                     correcto = true;
+                                   
+                                    
                                     //cambiamos correcto a true para que el pago haya sido correcto
                                 } else {
                                     JOptionPane.showMessageDialog(null, "saldo insuficiente");
@@ -329,4 +338,17 @@ public class MetodosAdministrador {
         return total;
     }
 
+    
+    public static void textoVentas(String venta){
+        
+        try{
+            Files.write(Paths.get("ventas.txt"), venta.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+            
+        }catch (IOException e) {
+            System.out.println("Error creando el fichero");
+        }
+        
+       
+    }
+    
 }

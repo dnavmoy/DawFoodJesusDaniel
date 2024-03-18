@@ -38,23 +38,7 @@ public class InicializadorClases {
     }
     
     
-    public static ArrayProductos extraerProductos(List<String> lista) {
-        //Creouna lista que devolvere
-        //ArrayList<Productos> listaDevolver = new ArrayList();
-        ArrayProductos listaDevolver= new ArrayProductos();
-        for (int i = 0; i < lista.size(); i++) {
-            //Separamos por , para obtener los datos de cada vehiculo
-            String[] array = lista.get(i).split(",");//Corta por cada coma
-            //Creamos un objeto producto y metemos los datos en cada campo
-            Productos temporal = new Productos(Integer.parseInt(array[0]),array[1], Double.parseDouble(array[2]), Double.parseDouble(array[3]), Integer.parseInt(array[4]), Comidas.ENTRANTES);
-            listaDevolver.getListaProductos().add(temporal);
-            System.out.println(temporal);
-            
-
-        }
-
-        return listaDevolver;
-    }
+  
     public static ArrayProductos extraerProductos() {
         //Creouna lista que devolvere
         //ArrayList<Productos> listaDevolver = new ArrayList();
