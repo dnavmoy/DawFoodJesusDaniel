@@ -26,7 +26,7 @@ public class TPV {
         this.id = new UUID(0, 0);
         this.listaV = new ListaVentas();
         this.productosTpv = new ArrayProductos();
-        this.productosTpv= InicializadorClases.extraerProductos(InicializadorClases.leerFichero("productos.csv"));
+        this.productosTpv= InicializadorClases.extraerProductos();
         this.direccion = "";
         this.hora = LocalDateTime.now();
         this.password=MetodosAdministrador.password();
